@@ -4,127 +4,99 @@
     <meta charset="UTF-8">
     <title>Conheça o Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 24px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .btn-outline-vinho { border: 2px solid var(--vinho); color: var(--vinho); border-radius: 20px; padding: 8px 24px; background: transparent; }
+        .btn-outline-vinho:hover { background-color: var(--vinho); color: var(--bege); }
+        .hero { background-color: var(--vinho); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+        .plano-card { background-color: var(--bege); border-radius: 16px; border: none; }
+        .plano-card.destaque { background-color: var(--vinho); color: var(--bege); }
+        .plano-card.destaque p { color: var(--bege) !important; }
+        footer { background-color: var(--vinho); color: var(--bege); }
+        h1, h2, h3, h4, h5 { color: var(--marrom); }
+        .hero h1, .hero p, .plano-card.destaque h4 { color: var(--bege); }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-dark bg-dark px-4">
-    <a class="navbar-brand fw-bold">📚 Maktaba</a>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
     <div>
-        <a href="/usuarios/login" class="btn btn-outline-light btn-sm me-2">Entrar</a>
-        <a href="/usuarios/cadastro" class="btn btn-primary btn-sm">Cadastrar</a>
+        <a href="/usuarios/login" class="btn btn-outline-vinho me-2" style="border-color: var(--bege); color: var(--bege);">Entrar</a>
+        <a href="/usuarios/cadastro" class="btn btn-vinho" style="background-color: var(--bege); color: var(--vinho);">Cadastrar-se</a>
     </div>
 </nav>
 
 <!-- Hero -->
-<div class="bg-dark text-white text-center py-5">
-    <h1 class="display-4 fw-bold">📚 Maktaba</h1>
-    <p class="lead text-secondary">Sua plataforma de assinatura de livros mensais</p>
-    <a href="/usuarios/cadastro" class="btn btn-primary btn-lg me-2">Começar agora</a>
-    <a href="/livros/catalogo" class="btn btn-outline-light btn-lg">Ver catálogo</a>
-</div>
-
-<!-- Benefícios -->
-<div class="container py-5">
-    <h2 class="text-center mb-5">Por que assinar o Maktaba?</h2>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>📦</h1>
-                    <h5 class="card-title mt-2">Livros todo mês</h5>
-                    <p class="card-text text-muted">Receba livros selecionados direto na sua casa todo mês, sem precisar sair.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>🎯</h1>
-                    <h5 class="card-title mt-2">Curadoria personalizada</h5>
-                    <p class="card-text text-muted">Livros escolhidos de acordo com seus interesses literários e preferências.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>💰</h1>
-                    <h5 class="card-title mt-2">Preço acessível</h5>
-                    <p class="card-text text-muted">Planos a partir de R$19,90 por mês. Cancele quando quiser, sem fidelidade.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>📖</h1>
-                    <h5 class="card-title mt-2">Catálogo diverso</h5>
-                    <p class="card-text text-muted">Fantasia, romance, distopia, literatura brasileira e muito mais.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>⏸️</h1>
-                    <h5 class="card-title mt-2">Pause quando quiser</h5>
-                    <p class="card-text text-muted">Ficou sem tempo? Pause sua assinatura e retome quando quiser.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm text-center p-3">
-                <div class="card-body">
-                    <h1>🔒</h1>
-                    <h5 class="card-title mt-2">Seguro e confiável</h5>
-                    <p class="card-text text-muted">Seus dados protegidos com criptografia de ponta a ponta.</p>
-                </div>
-            </div>
-        </div>
+<div class="hero py-5 text-center">
+    <h1 class="display-4 fw-bold">Bem vindo de volta!</h1>
+    <p class="lead mb-4">Conheça nossos planos!</p>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="/usuarios/login" class="btn btn-vinho" style="background-color: var(--bege); color: var(--vinho);">Entrar</a>
+        <a href="/usuarios/cadastro" class="btn btn-outline-vinho" style="border-color: var(--bege); color: var(--bege);">Cadastrar-se</a>
     </div>
 </div>
 
 <!-- Planos -->
-<div class="bg-white py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Nossos Planos</h2>
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-3 text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5>📗 Básico</h5>
-                        <h3 class="text-primary">R$19,90</h3>
-                        <p class="text-muted">1 livro/mês</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="card shadow border-primary">
-                    <div class="card-header bg-primary text-white">Mais Popular</div>
-                    <div class="card-body">
-                        <h5>📘 Standard</h5>
-                        <h3 class="text-primary">R$34,90</h3>
-                        <p class="text-muted">2 livros/mês</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5>📕 Premium</h5>
-                        <h3 class="text-primary">R$49,90</h3>
-                        <p class="text-muted">4 livros/mês</p>
-                    </div>
-                </div>
+<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold">Benefícios do plano</h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-3">
+            <div class="card plano-card shadow text-center p-4 h-100">
+                <h4 class="fw-bold">PLANO 1</h4>
+                <h5 class="text-muted">Básico</h5>
+                <h3 style="color: var(--vinho);">R$19,90</h3>
+                <ul class="list-unstyled text-start mt-3">
+                    <li>1 livro por mês</li>
+                    <li>Acesso ao catálogo</li>
+                    <li> Suporte por e-mail</li>
+                    <li> Cancele quando quiser</li>
+                </ul>
+                <a href="/usuarios/cadastro" class="btn btn-vinho mt-3">Assinar</a>
             </div>
         </div>
-        <div class="text-center mt-4">
-            <a href="/usuarios/cadastro" class="btn btn-primary btn-lg">Assinar agora</a>
+        <div class="col-md-3">
+            <div class="card plano-card destaque shadow text-center p-4 h-100">
+                <h4 class="fw-bold">PLANO 2</h4>
+                <h5>Standard</h5>
+                <h3>R$34,90</h3>
+                <ul class="list-unstyled text-start mt-3">
+                    <li>2 livros por mês</li>
+                    <li> Acesso ao catálogo</li>
+                    <li> Suporte prioritário</li>
+                    <li> Cancele quando quiser</li>
+                </ul>
+                <a href="/usuarios/cadastro" class="btn mt-3" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">Assinar</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card plano-card shadow text-center p-4 h-100">
+                <h4 class="fw-bold">PLANO 3</h4>
+                <h5 class="text-muted">Premium</h5>
+                <h3 style="color: var(--vinho);">R$49,90</h3>
+                <ul class="list-unstyled text-start mt-3">
+                    <li> 4 livros por mês</li>
+                    <li> Acesso ao catálogo</li>
+                    <li> Suporte 24/7</li>
+                    <li> Cancele quando quiser</li>
+                </ul>
+                <a href="/usuarios/cadastro" class="btn btn-vinho mt-3">Assinar</a>
+            </div>
         </div>
     </div>
 </div>
 
-<footer class="bg-dark text-white text-center py-3">
-    <p class="mb-0 text-muted">© 2026 Maktaba — Todos os direitos reservados</p>
+<footer class="text-center py-3">
+    <p class="mb-0">© 2026 Maktaba — Todos os direitos reservados</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/livros")
 public class LivroController {
@@ -18,7 +20,8 @@ public class LivroController {
 
     @GetMapping("/catalogo")
     public String catalogo(Model model) {
-        model.addAttribute("livros", livroRepository.findByDisponivelTrue());
+        List<Livro>livros =livroRepository.findByDisponivelTrue();
+        model.addAttribute("livros", livros);
         return "catalogo";
     }
 

@@ -20,7 +20,7 @@
 </head>
 <body>
 <nav>
-    <h1>📚 Maktaba</h1>
+    <h1> Maktaba</h1>
     <div><a href="/">Home</a><a href="/livros/catalogo">Catálogo</a></div>
 </nav>
 
@@ -28,9 +28,9 @@
     <div th:if="${assinatura}">
         <h2>Minha Assinatura</h2>
         <span class="status" th:classappend="${assinatura.status}" th:text="${assinatura.status}"></span>
-        <p class="info">📦 Plano: <strong th:text="${assinatura.plano}"></strong></p>
-        <p class="info">📅 Início: <strong th:text="${assinatura.dataInicio}"></strong></p>
-        <p class="info">🔄 Renovação: <strong th:text="${assinatura.dataRenovacao}"></strong></p>
+        <p class="info"> Plano: <strong th:text="${assinatura.plano}"></strong></p>
+        <p class="info"> Início: <strong th:text="${assinatura.dataInicio}"></strong></p>
+        <p class="info"> Renovação: <strong th:text="${assinatura.dataRenovacao}"></strong></p>
         <br>
         <a href="/assinatura/planos" class="btn-planos">Trocar Plano</a>
         <form action="/assinatura/cancelar" method="post" style="display:inline">

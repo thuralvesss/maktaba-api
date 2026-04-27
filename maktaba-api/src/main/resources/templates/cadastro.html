@@ -4,32 +4,51 @@
     <meta charset="UTF-8">
     <title>Maktaba - Cadastro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--vinho); min-height: 100vh; display: flex; }
+        .lado-esquerdo { background-color: var(--vinho); color: var(--bege); width: 300px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
+        .lado-direito { background-color: var(--bege-claro); flex: 1; display: flex; justify-content: center; align-items: center; }
+        .card-cadastro { background-color: var(--bege); border-radius: 20px; padding: 40px; width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .form-control { background-color: var(--bege-claro); border: none; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .form-control:focus { background-color: var(--bege-claro); border: 2px solid var(--vinho); box-shadow: none; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 40px; font-size: 16px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .logo { font-size: 28px; font-weight: bold; color: var(--bege); margin-bottom: 20px; }
+    </style>
 </head>
-<body class="bg-light d-flex justify-content-center align-items-center min-vh-100 py-4">
-<div class="card shadow p-4" style="width: 420px;">
-    <h2 class="text-center mb-1">📚 Maktaba</h2>
-    <h5 class="text-center text-muted mb-4">Criar Conta</h5>
-
-    <form action="/usuarios/registrar" method="post">
-        <div class="mb-3">
-            <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required/>
-        </div>
-        <div class="mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Nome de Usuário" required/>
-        </div>
-        <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="E-mail" required/>
-        </div>
-        <div class="mb-3">
-            <input type="password" name="senhaHash" class="form-control" placeholder="Senha" required/>
-        </div>
-        <div class="mb-3">
-            <label class="form-label text-muted small">Data de Nascimento</label>
-            <input type="date" name="dataNascimento" class="form-control" required/>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+<div class="lado-esquerdo">
+    <div class="logo">LOGO</div>
+    <p class="text-center" style="color: var(--bege);">Junte-se ao Maktaba e descubra novos livros todo mês!</p>
 </div>
+
+<div class="lado-direito">
+    <div class="card-cadastro">
+        <h2 class="fw-bold mb-4" style="color: var(--marrom);">Realize seu cadastro</h2>
+
+        <form action="/usuarios/registrar" method="post">
+            <input type="text" name="nome" class="form-control" placeholder="Nome completo" required/>
+            <input type="text" name="username" class="form-control" placeholder="Nome de usuário" required/>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" required/>
+            <input type="date" name="dataNascimento" class="form-control" required/>
+            <input type="password" name="senhaHash" class="form-control" placeholder="Senha" required/>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-vinho">Cadastrar-se</button>
+            </div>
+        </form>
+
+        <p class="text-center mt-3 mb-0">
+            <a href="/usuarios/login" style="color: var(--vinho); text-decoration: none; font-size: 14px;">Já tem conta? Entrar</a>
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

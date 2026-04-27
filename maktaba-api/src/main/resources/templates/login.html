@@ -4,32 +4,57 @@
     <meta charset="UTF-8">
     <title>Maktaba - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--vinho); min-height: 100vh; display: flex; }
+        .lado-esquerdo { background-color: var(--vinho); color: var(--bege); width: 300px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
+        .lado-direito { background-color: var(--bege-claro); flex: 1; display: flex; justify-content: center; align-items: center; }
+        .card-login { background-color: var(--bege); border-radius: 20px; padding: 40px; width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .form-control { background-color: var(--bege-claro); border: none; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .form-control:focus { background-color: var(--bege-claro); border: 2px solid var(--vinho); box-shadow: none; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 40px; font-size: 16px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .logo { font-size: 28px; font-weight: bold; color: var(--bege); margin-bottom: 20px; }
+        .plano-btn { background-color: var(--bege); color: var(--vinho); border: none; border-radius: 12px; padding: 10px 20px; margin: 5px; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
-<div class="card shadow p-4" style="width: 400px;">
-    <h2 class="text-center mb-3">📚 Maktaba</h2>
-    <h5 class="text-center text-muted mb-4">Entrar</h5>
-
-    <form action="/usuarios/login" method="post">
-        <div class="mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Usuário" required/>
-        </div>
-        <div class="mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Senha" required/>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-    </form>
-
-    <p class="text-center mt-3">
-        <a href="/recuperar-senha" class="text-decoration-none">Esqueci minha senha</a>
-    </p>
-    <p class="text-center">
-        Novo por aqui? <a href="/usuarios/cadastro" class="text-decoration-none">Cadastre-se</a>
-    </p>
-    <p class="text-center">
-        <a href="/sobre" class="text-decoration-none text-muted">Conheça o Maktaba</a>
-    </p>
+<body>
+<div class="lado-esquerdo">
+    <div class="logo">LOGO</div>
+    <p class="text-center mb-4" style="color: var(--bege);">Escolha seu plano</p>
+    <div class="d-flex flex-column gap-2 w-100">
+        <a href="/sobre" class="plano-btn text-center text-decoration-none">PLANO 1</a>
+        <a href="/sobre" class="plano-btn text-center text-decoration-none">PLANO 2</a>
+        <a href="/sobre" class="plano-btn text-center text-decoration-none">PLANO 3</a>
+    </div>
 </div>
+
+<div class="lado-direito">
+    <div class="card-login">
+        <h2 class="fw-bold mb-4" style="color: var(--marrom);">Entre na sua conta</h2>
+
+        <form action="/usuarios/login" method="post">
+            <input type="text" name="username" class="form-control" placeholder="Nome de usuário" required/>
+            <input type="password" name="password" class="form-control" placeholder="Senha" required/>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-vinho">Entrar</button>
+            </div>
+        </form>
+
+        <p class="text-center mt-3 mb-1">
+            <a href="/recuperar-senha" style="color: var(--vinho); text-decoration: none; font-size: 14px;">Esqueci minha senha</a>
+        </p>
+        <p class="text-center mb-0">
+            <a href="/usuarios/cadastro" style="color: var(--vinho); text-decoration: none; font-size: 14px;">Novo por aqui? Cadastre-se</a>
+        </p>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
