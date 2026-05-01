@@ -1,74 +1,75 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Maktaba - Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-    <style>
-        :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
-        }
-        body { background-color: var(--bege-claro); }
-        .navbar-custom { background-color: var(--vinho); }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 8px 20px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
-        .hero { background-color: var(--vinho); color: var(--bege); }
-        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
-        h1, h2, h3, h5 { color: var(--marrom); }
-        .hero h1, .hero p { color: var(--bege); }
-    </style>
-</head>
-<body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);"> Maktaba</a>
-    <div>
-        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
-        <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
-        <a href="/perfil" class="btn btn-outline-bege btn-sm me-2">Meu Perfil</a>
-        <a href="/admin/dashboard" class="btn btn-sm me-2" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;"> Admin</a>
-        <form action="/logout" method="post" class="d-inline">
-            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border-radius: 20px;">Sair</button>
-        </form>
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Maktaba - Home</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+        <style>
+            :root {
+                --vinho: #6B0F1A;
+                --bege: #E8D5A3;
+                --bege-claro: #F5EDD0;
+                --marrom: #3D0A0A;
+            }
+            body { background-color: var(--bege-claro); }
+            .navbar-custom { background-color: var(--vinho); }
+            .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
+            .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+            .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 8px 20px; background: transparent; }
+            .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+            .hero { background-color: var(--vinho); color: var(--bege); }
+            .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+            h1, h2, h3, h5 { color: var(--marrom); }
+            .hero h1, .hero p { color: var(--bege); }
+        </style>
+    </head>
+    <body>
+    <nav class="navbar navbar-custom px-4 py-3">
+        <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);"> Maktaba</a>
+        <div>
+            <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
+            <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
+            <a href="/perfil" class="btn btn-outline-bege btn-sm me-2">Meu Perfil</a>
+            <a href="/admin/dashboard" class="btn btn-sm me-2" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;"> Admin</a>
+            <form action="/logout" method="post" class="d-inline">
+                <button class="btn btn-sm" style="background-color: #dc3545; color: white; border-radius: 20px;">Sair</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="card card-custom shadow text-center p-4 h-100">
+                    <h1></h1>
+                    <h5 class="fw-bold mt-2">Catálogo</h5>
+                    <p class="text-muted">Explore nossos livros disponíveis</p>
+                    <a href="/livros/catalogo" class="btn btn-vinho mt-auto">Acessar</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-custom shadow text-center p-4 h-100">
+                    <h1></h1>
+                    <h5 class="fw-bold mt-2">Assinatura</h5>
+                    <p class="text-muted">Escolha seu plano de leitura</p>
+                    <a href="/assinatura/planos" class="btn btn-vinho mt-auto">Ver Planos</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-custom shadow text-center p-4 h-100">
+                    <h1></h1>
+                    <h5 class="fw-bold mt-2">Leituras</h5>
+                    <p class="text-muted">Acompanhe seu progresso</p>
+                    <a href="/leitura" class="btn btn-vinho mt-auto">Acessar</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-custom shadow text-center p-4 h-100">
+                    <h1></h1>
+                    <h5 class="fw-bold mt-2">Perfil</h5>
+                    <p class="text-muted">Gerencie seus dados</p>
+                    <a href="/perfil" class="btn btn-vinho mt-auto">Acessar</a>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
-
-<div class="hero py-5 text-center">
-    <h1 class="display-5 fw-bold">Bem-vindo ao Maktaba! </h1>
-    <p class="lead mb-4">Sua plataforma de assinatura de livros mensais</p>
-    <a href="/livros/catalogo" class="btn btn-vinho" style="background-color: var(--bege); color: var(--vinho);">Ver Catálogo</a>
-</div>
-
-<div class="container py-5">
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h5 class="fw-bold mt-2">Catálogo</h5>
-                <p class="text-muted">Explore nossos livros disponíveis</p>
-                <a href="/livros/catalogo" class="btn btn-vinho mt-auto">Acessar</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h5 class="fw-bold mt-2">Assinatura</h5>
-                <p class="text-muted">Escolha seu plano de leitura</p>
-                <a href="/assinatura/planos" class="btn btn-vinho mt-auto">Ver Planos</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h5 class="fw-bold mt-2">Perfil</h5>
-                <p class="text-muted">Gerencie seus dados</p>
-                <a href="/perfil" class="btn btn-vinho mt-auto">Acessar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

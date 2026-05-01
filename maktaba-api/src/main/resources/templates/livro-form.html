@@ -3,24 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Novo Livro - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background: #f4f4f4; }
-        .card { background: white; padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 16px 16px 0 0 !important; }
+        .form-control { background-color: var(--bege-claro); border: 1px solid #ccc; border-radius: 10px; }
+        .form-control:focus { border-color: var(--vinho); box-shadow: none; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
     </style>
 </head>
 <body>
-<div class="card">
-    <h2>Adicionar Livro</h2>
-    <form action="/livros/admin/salvar" method="post">
-        <input type="text" name="titulo" placeholder="Título" required/>
-        <input type="text" name="autor" placeholder="Autor" required/>
-        <input type="text" name="genero" placeholder="Gênero" required/>
-        <input type="text" name="imagemUrl" placeholder="URL da Capa"/>
-        <textarea name="descricao" placeholder="Descrição" style="width:100%; padding:8px; margin:8px 0; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;"></textarea>
-        <button type="submit">Salvar</button>
-    </form>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);"> Maktaba — Admin</a>
+    <a href="/livros/catalogo" class="btn btn-sm" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">← Voltar ao Catálogo</a>
+</nav>
+
+<div class="container py-4" style="max-width: 600px;">
+    <div class="card card-custom shadow">
+        <div class="card-header card-header-custom fw-bold">
+             Adicionar Novo Livro
+        </div>
+        <div class="card-body p-4">
+            <form action="/livros/admin/salvar" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Título</label>
+                    <input type="text" name="titulo" class="form-control" placeholder="Título do livro" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Autor</label>
+                    <input type="text" name="autor" class="form-control" placeholder="Nome do autor" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Gênero</label>
+                    <input type="text" name="genero" class="form-control" placeholder="Ex: Fantasia, Romance..." required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Total de Páginas</label>
+                    <input type="number" name="totalPaginas" class="form-control" placeholder="Ex: 350" min="1" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">URL da Capa</label>
+                    <input type="text" name="imagemUrl" class="form-control" placeholder="https://..."/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Descrição</label>
+                    <textarea name="descricao" class="form-control" rows="3" placeholder="Descrição do livro"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold"> Arquivo PDF</label>
+                    <input type="file" name="arquivo" class="form-control" accept=".pdf"/>
+                    <small class="text-muted">Tamanho máximo: 50MB</small>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-vinho">Salvar Livro</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>>
+</html>

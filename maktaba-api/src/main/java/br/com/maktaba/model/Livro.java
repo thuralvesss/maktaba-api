@@ -28,4 +28,8 @@ public class Livro {
     private String imagemUrl;
 
     private Boolean disponivel = true;
+
+    private Integer totalPaginas;
+
+    private String arquivoPdf; // caminho do arquivo salvo
 }

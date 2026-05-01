@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Leituras - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 16px 16px 0 0 !important; }
+        .progress { height: 12px; border-radius: 10px; }
+        .progress-bar { background-color: var(--vinho); }
+        .badge-nao-lido { background-color: #6c757d; }
+        .badge-lendo { background-color: #ffc107; color: #333; }
+        .badge-concluido { background-color: #28a745; }
+        h2, h5, h6 { color: var(--marrom); }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);"> Maktaba</a>
+    <div>
+        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
+        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
+        <a href="/perfil" class="btn btn-outline-bege btn-sm">Meu Perfil</a>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <h2 class="fw-bold mb-4"> Minhas Leituras</h2>
+
+    <!-- Adicionar novo livro à lista -->
+    <div class="card card-custom shadow mb-4">
+        <div class="card-header card-header-custom fw-bold">➕ Adicionar Livro à Minha Lista</div>
+        <div class="card-body">
+            <form action="/leitura/iniciar" method="post" class="d-flex gap-3">
+                <select name="livroId" class="form-select" style="background-color: var(--bege-claro); border-radius: 10px;">
+                    <option value="">Selecione um livro...</option>
+                    <option th:each="livro : ${todosLivros}"
+                            th:value="${livro.id}"
+                            th:text="${livro.titulo} + ' — ' + ${livro.autor}"></option>
+                </select>
+                <button type="submit" class="btn btn-vinho">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lista de leituras -->
+    <div th:if="${progressos.empty}" class="text-center py-5">
+        <h5 class="text-muted">Você ainda não tem livros na sua lista!</h5>
+        <a href="/livros/catalogo" class="btn btn-vinho mt-3">Ver Catálogo</a>
+    </div>
+
+    <div class="row g-4" th:unless="${progressos.empty}">
+        <div th:each="progresso : ${progressos}" class="col-md-6">
+            <div class="card card-custom shadow h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex gap-3 mb-3">
+                        <img th:src="${progresso.livro.imagemUrl}"
+                             th:alt="${progresso.livro.titulo}"
+                             style="width: 60px; height: 80px; object-fit: cover; border-radius: 8px;"
+                             onerror="this.src='https://via.placeholder.com/60x80?text=Capa'"/>
+                        <div>
+                            <h6 class="fw-bold mb-1" th:text="${progresso.livro.titulo}"></h6>
+                            <p class="text-muted small mb-1" th:text="${progresso.livro.autor}"></p>
+                            <span class="badge"
+                                  th:classappend="${progresso.status == 'CONCLUIDO'} ? 'badge-concluido' : (${progresso.status == 'LENDO'} ? 'badge-lendo' : 'badge-nao-lido')"
+                                  th:text="${progresso.status == 'NAO_LIDO'} ? 'Não Lido' : (${progresso.status == 'LENDO'} ? 'Lendo' : 'Concluído')"></span>
+                        </div>
+                    </div>
+
+                    <!-- Barra de progresso -->
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between small text-muted mb-1">
+                            <span>Página <span th:text="${progresso.paginaAtual}">0</span> de <span th:text="${progresso.livro.totalPaginas ?: '?'}">?</span></span>
+                            <span th:text="${#numbers.formatDecimal(progresso.porcentagem, 1, 1)} + '%'">0%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar"
+                                 th:style="'width: ' + ${progresso.porcentagem} + '%'"></div>
+                        </div>
+                    </div>
+
+                    <!-- Atualizar página -->
+                    <form action="/leitura/atualizar" method="post" class="d-flex gap-2 mt-3">
+                        <input type="hidden" name="progressoId" th:value="${progresso.id}"/>
+                        <input type="number" name="paginaAtual"
+                               class="form-control form-control-sm"
+                               th:value="${progresso.paginaAtual}"
+                               min="0"
+                               th:max="${progresso.livro.totalPaginas}"
+                               style="background-color: var(--bege-claro); border-radius: 10px; width: 100px;"/>
+                        <button type="submit" class="btn btn-vinho btn-sm">Salvar</button>
+                        <a th:if="${progresso.livro.arquivoPdf != null}"
+                           th:href="'/pdfs/' + ${progresso.livro.arquivoPdf}"
+                           target="_blank"
+                           class="btn btn-sm"
+                           style="background-color: var(--marrom); color: var(--bege); border-radius: 20px;"> Ler PDF</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
