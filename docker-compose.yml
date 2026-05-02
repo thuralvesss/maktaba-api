@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:15
+    container_name: maktada-db
+    environment:
+      POSTGRES_DB: maktada_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
