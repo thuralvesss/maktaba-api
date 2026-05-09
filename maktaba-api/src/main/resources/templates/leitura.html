@@ -100,7 +100,7 @@
                                th:value="${progresso.paginaAtual}"
                                min="0"
                                th:max="${progresso.livro.totalPaginas}"
-                               style="background-color: var(--bege-claro); border-radius: 10px; width: 100px;"/>
+                               style="background-color: var(--bege-claro); border-radius: 10px; width: 100px;" required/>
                         <button type="submit" class="btn btn-vinho btn-sm">Salvar</button>
                         <a th:if="${progresso.livro.arquivoPdf != null}"
                            th:href="'/pdfs/' + ${progresso.livro.arquivoPdf}"

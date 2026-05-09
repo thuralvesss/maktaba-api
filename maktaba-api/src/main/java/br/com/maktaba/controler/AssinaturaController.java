@@ -42,26 +42,8 @@ public class AssinaturaController {
     }
 
     @PostMapping("/confirmar")
-    public String confirmar(@RequestParam String plano,
-                            @AuthenticationPrincipal UserDetails userDetails) {
-
-        Usuario usuario = usuarioRepository.findByUsername(userDetails.getUsername())
-                .orElseThrow();
-
-        assinaturaRepository.findByUsuarioId(usuario.getId()).ifPresent(a -> {
-            assinaturaRepository.delete(a);
-        });
-
-        Assinatura assinatura = new Assinatura();
-        assinatura.setPlano(plano);
-        assinatura.setStatus("ATIVA");
-        assinatura.setDataInicio(LocalDate.now());
-        assinatura.setDataRenovacao(LocalDate.now().plusMonths(1));
-        assinatura.setUsuario(usuario);
-
-        assinaturaRepository.save(assinatura);
-
-        return "redirect:/assinatura/status";
+    public String confirmar(@RequestParam String plano) {
+        return "redirect:/pagamento?plano=" + plano;
     }
 
     @GetMapping("/status")

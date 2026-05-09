@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento Confirmado - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 20px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 20px 20px 0 0 !important; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        h2, h5 { color: var(--marrom); }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <div>
+        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
+        <a href="/assinatura/status" class="btn btn-outline-bege btn-sm">Minha Assinatura</a>
+    </div>
+</nav>
+
+<div class="container py-5" style="max-width: 550px;">
+    <div class="card card-custom shadow text-center">
+        <div class="card-header card-header-custom py-4">
+            <h3 class="mb-0">Pagamento Recebido!</h3>
+        </div>
+        <div class="card-body p-4">
+            <div class="mb-4" style="font-size: 60px;">✓</div>
+            <h5 class="fw-bold mb-3">Sua solicitação foi registrada</h5>
+            <p class="text-muted mb-4">Assim que o pagamento for confirmado sua assinatura será ativada.</p>
+
+            <div class="border rounded p-3 mb-4" style="background-color: var(--bege-claro); border-radius: 12px !important;">
+                <div class="d-flex justify-content-between py-1">
+                    <span class="text-muted">Plano</span>
+                    <span class="fw-bold" th:text="${plano}"></span>
+                </div>
+                <div class="d-flex justify-content-between py-1">
+                    <span class="text-muted">Valor</span>
+                    <span class="fw-bold">R$ <span th:text="${valor}"></span></span>
+                </div>
+                <div class="d-flex justify-content-between py-1">
+                    <span class="text-muted">Forma de pagamento</span>
+                    <span class="fw-bold" th:text="${formaPagamento}"></span>
+                </div>
+            </div>
+
+            <a href="/assinatura/status" class="btn btn-vinho w-100">Ver minha assinatura</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>>

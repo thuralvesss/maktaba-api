@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--vinho); min-height: 100vh; display: flex; }
+        .lado-esquerdo { background-color: var(--vinho); color: var(--bege); width: 300px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
+        .lado-direito { background-color: var(--bege-claro); flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px; }
+        .logo { font-size: 28px; font-weight: bold; color: var(--bege); margin-bottom: 30px; }
+        .card-pagamento { background-color: var(--bege); border-radius: 20px; padding: 40px; width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card-plano { background-color: var(--vinho); color: var(--bege); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+        .forma-pagamento { background-color: var(--bege-claro); border: 2px solid transparent; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
+        .forma-pagamento:hover { border-color: var(--vinho); }
+        .forma-pagamento input[type="radio"] { accent-color: var(--vinho); }
+        .forma-pagamento.selecionado { border-color: var(--vinho); background-color: #f0e8d0; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 12px 40px; font-size: 16px; width: 100%; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        h2, h5 { color: var(--marrom); }
+    </style>
+</head>
+<body>
+<div class="lado-esquerdo">
+    <div class="logo"> Maktaba</div>
+    <p class="text-center" style="color: var(--bege);">Escolha como deseja pagar sua assinatura</p>
+</div>
+
+<div class="lado-direito">
+    <div class="card-pagamento">
+        <h2 class="fw-bold mb-4"> Pagamento</h2>
+
+        <!-- Resumo do plano -->
+        <div class="card-plano">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-1" style="color: var(--bege);">Plano <span th:text="${plano}"></span></h5>
+                    <small style="color: var(--bege); opacity: 0.8;">Cobrança mensal</small>
+                </div>
+                <h3 class="mb-0" style="color: var(--bege);">R$ <span th:text="${valor}"></span></h3>
+            </div>
+        </div>
+
+        <!-- Formas de pagamento -->
+        <h5 class="fw-bold mb-3">Forma de pagamento</h5>
+        <form action="/pagamento/confirmar" method="post">
+            <input type="hidden" name="plano" th:value="${plano}"/>
+
+            <label class="forma-pagamento d-flex align-items-center gap-3 w-100">
+                <input type="radio" name="formaPagamento" value="CARTAO" required/>
+                <div>
+                    <div class="fw-bold"> Cartão de Crédito</div>
+                    <small class="text-muted">Débito automático mensal</small>
+                </div>
+            </label>
+
+            <label class="forma-pagamento d-flex align-items-center gap-3 w-100">
+                <input type="radio" name="formaPagamento" value="PIX"/>
+                <div>
+                    <div class="fw-bold">⚡ PIX</div>
+                    <small class="text-muted">Pagamento instantâneo</small>
+                </div>
+            </label>
+
+            <label class="forma-pagamento d-flex align-items-center gap-3 w-100">
+                <input type="radio" name="formaPagamento" value="BOLETO"/>
+                <div>
+                    <div class="fw-bold"> Boleto Bancário</div>
+                    <small class="text-muted">Vencimento em 3 dias úteis</small>
+                </div>
+            </label>
+
+            <button type="submit" class="btn btn-vinho mt-4">Confirmar Pagamento</button>
+        </form>
+
+        <p class="text-center mt-3">
+            <a href="/assinatura/planos" style="color: var(--vinho); text-decoration: none; font-size: 14px;">← Voltar aos planos</a>
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
