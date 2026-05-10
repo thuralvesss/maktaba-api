@@ -3,44 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Minha Assinatura - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: sans-serif; background: #f4f4f4; }
-        nav { background: #1a1a2e; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        nav h1 { color: white; } nav a { color: #ccc; text-decoration: none; margin-left: 20px; }
-        .container { max-width: 500px; margin: 60px auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
-        .status { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: bold; margin: 10px 0 20px; }
-        .ATIVA { background: #d4edda; color: #155724; }
-        .PAUSADA { background: #fff3cd; color: #856404; }
-        .CANCELADA { background: #f8d7da; color: #721c24; }
-        .info { margin: 10px 0; color: #555; }
-        .btn { display: inline-block; margin-top: 20px; padding: 10px 24px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
-        .btn-planos { display: inline-block; margin-top: 20px; padding: 10px 24px; background: #007bff; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; margin-right: 10px; }
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 24px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 20px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 20px 20px 0 0 !important; }
+        .badge-ativa { background-color: #28a745; }
+        .badge-pausada { background-color: #ffc107; color: #333; }
+        .badge-cancelada { background-color: #dc3545; }
+        h2, h5 { color: var(--marrom); }
     </style>
 </head>
 <body>
-<nav>
-    <h1> Maktaba</h1>
-    <div><a href="/">Home</a><a href="/livros/catalogo">Catálogo</a></div>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <div>
+        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
+        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm">Catalogo</a>
+    </div>
 </nav>
 
-<div class="container">
-    <div th:if="${assinatura}">
-        <h2>Minha Assinatura</h2>
-        <span class="status" th:classappend="${assinatura.status}" th:text="${assinatura.status}"></span>
-        <p class="info"> Plano: <strong th:text="${assinatura.plano}"></strong></p>
-        <p class="info"> Início: <strong th:text="${assinatura.dataInicio}"></strong></p>
-        <p class="info"> Renovação: <strong th:text="${assinatura.dataRenovacao}"></strong></p>
-        <br>
-        <a href="/assinatura/planos" class="btn-planos">Trocar Plano</a>
-        <form action="/assinatura/cancelar" method="post" style="display:inline">
-            <button class="btn">Cancelar Assinatura</button>
-        </form>
-    </div>
-    <div th:unless="${assinatura}">
-        <h2>Você não tem assinatura ativa</h2>
-        <a href="/assinatura/planos" class="btn-planos">Ver Planos</a>
+<div class="container py-5" style="max-width: 500px;">
+    <div class="card card-custom shadow text-center">
+        <div class="card-header card-header-custom py-3">
+            <h4 class="mb-0">Minha Assinatura</h4>
+        </div>
+        <div class="card-body p-4">
+            <div th:if="${assinatura}">
+                <span class="badge mb-3 fs-6"
+                      th:classappend="${assinatura.status == 'ATIVA'} ? 'badge-ativa' : (${assinatura.status == 'CANCELADA'} ? 'badge-cancelada' : 'badge-pausada')"
+                      th:text="${assinatura.status}"></span>
+                <div class="border rounded p-3 mb-4" style="background-color: var(--bege-claro); border-radius: 12px !important; text-align: left;">
+                    <div class="d-flex justify-content-between py-1 border-bottom">
+                        <span class="text-muted">Plano</span>
+                        <span class="fw-bold" th:text="${assinatura.plano}"></span>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom">
+                        <span class="text-muted">Inicio</span>
+                        <span class="fw-bold" th:text="${assinatura.dataInicio}"></span>
+                    </div>
+                    <div class="d-flex justify-content-between py-1">
+                        <span class="text-muted">Renovacao</span>
+                        <span class="fw-bold" th:text="${assinatura.dataRenovacao}"></span>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center">
+                    <a href="/assinatura/planos" class="btn btn-vinho">Trocar Plano</a>
+                    <form action="/assinatura/cancelar" method="post" class="d-inline">
+                        <button class="btn" style="background-color: #dc3545; color: white; border-radius: 20px; padding: 10px 24px;">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+            <div th:unless="${assinatura}">
+                <p class="text-muted mb-3">Voce nao possui assinatura ativa.</p>
+                <a href="/assinatura/planos" class="btn btn-vinho">Ver Planos</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

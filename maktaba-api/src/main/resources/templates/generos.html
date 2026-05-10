@@ -2,24 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Meus Gêneros - Maktaba</title>
+    <title>Meus Generos - Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 20px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 20px 20px 0 0 !important; }
+        .form-check-input:checked { background-color: var(--vinho); border-color: var(--vinho); }
+        h4, h5 { color: var(--marrom); }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-dark bg-dark px-4">
-    <a class="navbar-brand fw-bold"> Maktaba</a>
-    <a href="/perfil" class="btn btn-outline-light btn-sm">← Voltar ao Perfil</a>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <a href="/perfil" class="btn btn-outline-bege btn-sm">Voltar ao Perfil</a>
 </nav>
 
 <div class="container py-5" style="max-width: 600px;">
-    <div class="card shadow">
-        <div class="card-header bg-dark text-white">
-            <h4 class="mb-0">  Meus Gêneros Literários</h4>
+    <div class="card card-custom shadow">
+        <div class="card-header card-header-custom py-3">
+            <h4 class="mb-0">Meus Generos Literarios</h4>
         </div>
-        <div class="card-body">
-            <p class="text-muted">Escolha entre <strong>1 e 8 gêneros</strong> que mais combinam com você.</p>
+        <div class="card-body p-4">
+            <p class="text-muted mb-4">Escolha entre <strong>1 e 8 generos</strong> que mais combinam com voce.</p>
 
-            <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
+            <div th:if="${erro}" class="alert" style="background-color: #f8d7da; color: #721c24; border-radius: 10px;" th:text="${erro}"></div>
 
             <form action="/perfil/generos" method="post">
                 <div class="row g-3 mb-4">
@@ -36,13 +54,13 @@
                     </div>
                 </div>
 
-                <div id="avisoMax" class="alert alert-warning d-none">
-                    Você pode escolher no máximo 8 gêneros!
+                <div id="avisoMax" class="alert d-none" style="background-color: #fff3cd; color: #856404; border-radius: 10px;">
+                    Voce pode escolher no maximo 8 generos!
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <span id="contador" class="text-muted small">0 gêneros selecionados</span>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <span id="contador" class="text-muted small">0 generos selecionados</span>
+                    <button type="submit" class="btn-vinho">Salvar</button>
                 </div>
             </form>
         </div>
@@ -55,20 +73,13 @@
         const total = checkboxes.length;
         const aviso = document.getElementById('avisoMax');
         const contador = document.getElementById('contador');
-
-        contador.textContent = total + ' gênero(s) selecionado(s)';
-
+        contador.textContent = total + ' genero(s) selecionado(s)';
         if (total > 8) {
             aviso.classList.remove('d-none');
-            // desmarca o último
-            const todos = document.querySelectorAll('input[name="generos"]');
-            todos.forEach(cb => { if (!cb.checked) return; });
         } else {
             aviso.classList.add('d-none');
         }
     }
-
-    // inicializa o contador
     validarSelecao();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

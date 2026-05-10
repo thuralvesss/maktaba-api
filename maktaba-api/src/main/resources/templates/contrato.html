@@ -4,64 +4,83 @@
     <meta charset="UTF-8">
     <title>Contrato de Assinatura - Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 20px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 20px 20px 0 0 !important; }
+        .btn-aceitar { background-color: #28a745; color: white; border: none; border-radius: 20px; padding: 10px 24px; width: 100%; }
+        .btn-aceitar:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-recusar { border: 2px solid #dc3545; color: #dc3545; border-radius: 20px; padding: 10px 24px; width: 100%; background: transparent; }
+        .btn-recusar:hover { background-color: #dc3545; color: white; }
+        .form-check-input:checked { background-color: var(--vinho); border-color: var(--vinho); }
+        h4, h5, h6 { color: var(--marrom); }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-dark bg-dark px-4">
-    <a class="navbar-brand fw-bold"> Maktaba</a>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm">Voltar aos planos</a>
 </nav>
 
 <div class="container py-5" style="max-width: 700px;">
-    <div class="card shadow">
-        <div class="card-header bg-dark text-white">
-            <h4 class="mb-0"> Contrato de Assinatura — Plano <span th:text="${plano}"></span></h4>
+    <div class="card card-custom shadow">
+        <div class="card-header card-header-custom py-3">
+            <h4 class="mb-0">Contrato de Assinatura — Plano <span th:text="${plano}"></span></h4>
         </div>
-        <div class="card-body">
-            <h6 class="text-muted mb-3">Leia atentamente os termos antes de confirmar.</h6>
+        <div class="card-body p-4">
+            <p class="text-muted mb-3">Leia atentamente os termos antes de confirmar.</p>
 
-            <div class="border rounded p-3 bg-white mb-4" style="height: 300px; overflow-y: scroll;">
-                <h5>Termos e Condições do Plano <span th:text="${plano}"></span></h5>
-                <p>Este contrato estabelece os termos e condições para a assinatura do serviço Maktaba.</p>
+            <div class="border rounded p-3 mb-4" style="height: 300px; overflow-y: scroll; background-color: var(--bege-claro); border-radius: 12px !important;">
+                <h5>Termos e Condicoes do Plano <span th:text="${plano}"></span></h5>
+                <p>Este contrato estabelece os termos e condicoes para a assinatura do servico Maktaba.</p>
 
                 <h6>1. Objeto do Contrato</h6>
-                <p>O assinante terá direito ao recebimento mensal de livros conforme o plano escolhido:</p>
+                <p>O assinante tera direito ao recebimento mensal de livros conforme o plano escolhido:</p>
                 <ul>
-                    <li th:if="${plano == 'BASICO'}">Plano Básico: 1 livro por mês — R$19,90/mês</li>
-                    <li th:if="${plano == 'STANDARD'}">Plano Standard: 2 livros por mês — R$34,90/mês</li>
-                    <li th:if="${plano == 'PREMIUM'}">Plano Premium: 4 livros por mês — R$49,90/mês</li>
+                    <li th:if="${plano == 'BASICO'}">Plano Basico: 1 livro por mes — R$19,90/mes</li>
+                    <li th:if="${plano == 'STANDARD'}">Plano Standard: 2 livros por mes — R$34,90/mes</li>
+                    <li th:if="${plano == 'PREMIUM'}">Plano Premium: 4 livros por mes — R$49,90/mes</li>
                 </ul>
 
-                <h6>2. Vigência</h6>
-                <p>A assinatura é mensal e renovada automaticamente todo mês na data de início.</p>
+                <h6>2. Vigencia</h6>
+                <p>A assinatura e mensal e renovada automaticamente todo mes na data de inicio.</p>
 
                 <h6>3. Cancelamento</h6>
                 <p>O assinante pode cancelar ou pausar sua assinatura a qualquer momento pelo painel de controle, sem multa.</p>
 
                 <h6>4. Pagamento</h6>
-                <p>O pagamento será realizado mensalmente na data de renovação. O não pagamento resultará na suspensão automática da assinatura.</p>
+                <p>O pagamento sera realizado mensalmente na data de renovacao. O nao pagamento resultara na suspensao automatica da assinatura.</p>
 
                 <h6>5. Entrega</h6>
-                <p>Os livros serão enviados para o endereço cadastrado em até 10 dias úteis após a confirmação do pagamento.</p>
+                <p>Os livros serao enviados para o endereco cadastrado em ate 10 dias uteis apos a confirmacao do pagamento.</p>
 
                 <h6>6. Curadoria</h6>
-                <p>Os livros são selecionados com base nos gêneros literários informados pelo assinante no cadastro.</p>
+                <p>Os livros sao selecionados com base nos generos literarios informados pelo assinante no cadastro.</p>
 
-                <h6>7. Política de Privacidade</h6>
-                <p>Os dados do assinante serão utilizados exclusivamente para fins de entrega e comunicação relacionados ao serviço Maktaba.</p>
+                <h6>7. Politica de Privacidade</h6>
+                <p>Os dados do assinante serao utilizados exclusivamente para fins de entrega e comunicacao relacionados ao servico Maktaba.</p>
             </div>
 
             <div class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" id="aceite" onchange="toggleBotao()"/>
-                <label class="form-check-label" for="aceite">
-                    Li e aceito os termos e condições do contrato.
-                </label>
+                <label class="form-check-label" for="aceite">Li e aceito os termos e condicoes do contrato.</label>
             </div>
 
             <div class="d-flex gap-3">
                 <form action="/assinatura/confirmar" method="post" class="w-100">
                     <input type="hidden" name="plano" th:value="${plano}"/>
-                    <button id="btnAceitar" class="btn btn-success w-100" disabled> Aceitar e Assinar</button>
+                    <button id="btnAceitar" class="btn-aceitar" disabled>Aceitar e Assinar</button>
                 </form>
-                <a href="/assinatura/planos" class="btn btn-outline-danger w-100"> Recusar</a>
+                <a href="/assinatura/planos" class="btn-recusar text-center text-decoration-none d-flex align-items-center justify-content-center">Recusar</a>
             </div>
         </div>
     </div>

@@ -4,101 +4,109 @@
     <meta charset="UTF-8">
     <title>Dashboard Admin - Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 16px 16px 0 0 !important; }
+        .card-stat { background-color: var(--bege); border: none; border-radius: 16px; }
+        h2, h5 { color: var(--marrom); }
+        .table thead { background-color: var(--vinho); color: var(--bege); }
+        .table-custom { background-color: var(--bege); }
+    </style>
 </head>
-<body class="bg-light">
-<nav class="navbar navbar-dark bg-dark px-4">
-    <a class="navbar-brand fw-bold"> Maktaba — Admin</a>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba — Admin</a>
     <div>
-        <a href="/" class="btn btn-outline-light btn-sm me-2">Home</a>
-        <a href="/livros/admin/novo" class="btn btn-outline-light btn-sm me-2">+ Livro</a>
+        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
+        <a href="/livros/admin/novo" class="btn btn-outline-bege btn-sm me-2">Novo Livro</a>
         <form action="/logout" method="post" class="d-inline">
-            <button class="btn btn-danger btn-sm">Sair</button>
+            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border-radius: 20px;">Sair</button>
         </form>
     </div>
 </nav>
 
 <div class="container py-4">
-    <h2 class="mb-4"> Dashboard Administrativo</h2>
+    <h2 class="fw-bold mb-4">Dashboard Administrativo</h2>
 
-    <!-- Cards de resumo -->
     <div class="row g-4 mb-4">
         <div class="col-md-3">
-            <div class="card shadow text-center border-success">
-                <div class="card-body">
-                    <h1 class="text-success" th:text="${ativas}">0</h1>
-                    <p class="text-muted mb-0">Assinaturas Ativas</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3" style="border-left: 4px solid #28a745;">
+                <h1 class="text-success" th:text="${ativas}">0</h1>
+                <p class="text-muted mb-0">Assinaturas Ativas</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card shadow text-center border-warning">
-                <div class="card-body">
-                    <h1 class="text-warning" th:text="${pausadas}">0</h1>
-                    <p class="text-muted mb-0">Assinaturas Pausadas</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3" style="border-left: 4px solid #ffc107;">
+                <h1 class="text-warning" th:text="${pausadas}">0</h1>
+                <p class="text-muted mb-0">Assinaturas Pausadas</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card shadow text-center border-danger">
-                <div class="card-body">
-                    <h1 class="text-danger" th:text="${canceladas}">0</h1>
-                    <p class="text-muted mb-0">Assinaturas Canceladas</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3" style="border-left: 4px solid #dc3545;">
+                <h1 class="text-danger" th:text="${canceladas}">0</h1>
+                <p class="text-muted mb-0">Assinaturas Canceladas</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card shadow text-center border-primary">
-                <div class="card-body">
-                    <h1 class="text-primary">R$<span th:text="${faturamento}">0</span></h1>
-                    <p class="text-muted mb-0">Faturamento Mensal</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3" style="border-left: 4px solid var(--vinho);">
+                <h1 style="color: var(--vinho);">R$<span th:text="${faturamento}">0</span></h1>
+                <p class="text-muted mb-0">Faturamento Mensal</p>
             </div>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
         <div class="col-md-6">
-            <div class="card shadow text-center">
-                <div class="card-body">
-                    <h1 th:text="${totalUsuarios}">0</h1>
-                    <p class="text-muted mb-0">Total de Usuários</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3">
+                <h1 style="color: var(--marrom);" th:text="${totalUsuarios}">0</h1>
+                <p class="text-muted mb-0">Total de Usuarios</p>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card shadow text-center">
-                <div class="card-body">
-                    <h1 th:text="${totalLivros}">0</h1>
-                    <p class="text-muted mb-0">Livros no Catálogo</p>
-                </div>
+            <div class="card card-stat shadow text-center p-3">
+                <h1 style="color: var(--marrom);" th:text="${totalLivros}">0</h1>
+                <p class="text-muted mb-0">Livros no Catalogo</p>
             </div>
         </div>
     </div>
 
-    <!-- Tabela de assinaturas -->
-    <div class="card shadow">
-        <div class="card-header bg-dark text-white">
-            <h5 class="mb-0"> Lista de Assinaturas</h5>
+    <div class="card card-custom shadow">
+        <div class="card-header card-header-custom py-3">
+            <h5 class="mb-0">Lista de Assinaturas</h5>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover mb-0">
-                <thead class="table-dark">
+                <thead style="background-color: var(--vinho); color: var(--bege);">
                 <tr>
-                    <th>Usuário</th>
+                    <th>Usuario</th>
                     <th>Plano</th>
                     <th>Status</th>
-                    <th>Início</th>
-                    <th>Renovação</th>
+                    <th>Inicio</th>
+                    <th>Renovacao</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: var(--bege);">
                 <tr th:each="assinatura : ${assinaturas}">
                     <td th:text="${assinatura.usuario.nome}"></td>
-                    <td><span class="badge bg-primary" th:text="${assinatura.plano}"></span></td>
                     <td>
-                                <span class="badge"
-                                      th:classappend="${assinatura.status == 'ATIVA'} ? 'bg-success' : (${assinatura.status == 'CANCELADA'} ? 'bg-danger' : 'bg-warning')"
-                                      th:text="${assinatura.status}"></span>
+                        <span class="badge" style="background-color: var(--vinho);" th:text="${assinatura.plano}"></span>
+                    </td>
+                    <td>
+                            <span class="badge"
+                                  th:classappend="${assinatura.status == 'ATIVA'} ? 'bg-success' : (${assinatura.status == 'CANCELADA'} ? 'bg-danger' : 'bg-warning')"
+                                  th:text="${assinatura.status}"></span>
                     </td>
                     <td th:text="${assinatura.dataInicio}"></td>
                     <td th:text="${assinatura.dataRenovacao}"></td>
@@ -111,4 +119,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>ml>
+</html>

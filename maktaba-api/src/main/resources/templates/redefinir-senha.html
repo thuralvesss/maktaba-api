@@ -3,36 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Redefinir Senha - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .card { background: white; padding: 40px; border-radius: 12px; width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h2 { margin-bottom: 20px; color: #1a1a2e; }
-        input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
-        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
-        .sucesso { background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; margin-bottom: 15px; }
-        .erro { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 6px; margin-bottom: 15px; }
-        .voltar { display: block; text-align: center; margin-top: 15px; color: #007bff; text-decoration: none; font-size: 14px; }
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--vinho); min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .card-custom { background-color: var(--bege); border-radius: 20px; padding: 40px; width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .form-control { background-color: var(--bege-claro); border: none; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .form-control:focus { background-color: var(--bege-claro); border: 2px solid var(--vinho); box-shadow: none; }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 40px; font-size: 16px; width: 100%; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        h2 { color: var(--marrom); }
     </style>
 </head>
 <body>
-<div class="card">
-    <h2> Nova Senha</h2>
+<div class="card-custom">
+    <h2 class="fw-bold mb-4">Nova Senha</h2>
 
-    <div th:if="${sucesso}" class="sucesso">
-        <p th:text="${sucesso}"></p>
-        <a href="/usuarios/login" class="voltar">Ir para o login</a>
+    <div th:if="${sucesso}" class="alert mb-3" style="background-color: #d4edda; color: #155724; border-radius: 10px;">
+        <p th:text="${sucesso}" class="mb-2"></p>
+        <a href="/usuarios/login" style="color: #155724; font-size: 14px;">Ir para o login</a>
     </div>
 
-    <div th:if="${erro}" class="erro" th:text="${erro}"></div>
+    <div th:if="${erro}" class="alert mb-3" style="background-color: #f8d7da; color: #721c24; border-radius: 10px;" th:text="${erro}"></div>
 
     <form th:unless="${sucesso}" action="/recuperar-senha/redefinir" method="post">
         <input type="hidden" name="token" th:value="${token}"/>
-        <input type="password" name="novaSenha" placeholder="Nova senha" required/>
-        <input type="password" placeholder="Confirmar senha" required/>
-        <button type="submit">Redefinir senha</button>
+        <input type="password" name="novaSenha" class="form-control" placeholder="Nova senha" required/>
+        <input type="password" class="form-control" placeholder="Confirmar senha" required/>
+        <button type="submit" class="btn-vinho">Redefinir senha</button>
     </form>
-    <a th:unless="${sucesso}" href="/usuarios/login" class="voltar">← Voltar para o login</a>
+
+    <p th:unless="${sucesso}" class="text-center mt-3 mb-0">
+        <a href="/usuarios/login" style="color: var(--vinho); text-decoration: none; font-size: 14px;">Voltar para o login</a>
+    </p>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>l>
+</html>
