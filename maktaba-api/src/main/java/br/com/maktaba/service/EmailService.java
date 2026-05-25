@@ -1,4 +1,4 @@
-package br.com.maktaba.config;
+package br.com.maktaba.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

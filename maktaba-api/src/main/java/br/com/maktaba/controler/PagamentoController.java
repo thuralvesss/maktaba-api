@@ -1,6 +1,6 @@
 package br.com.maktaba.controler;
 
-import br.com.maktaba.config.EmailService;
+import br.com.maktaba.service.EmailService;
 import br.com.maktaba.model.Assinatura;
 import br.com.maktaba.model.Pagamento;
 import br.com.maktaba.model.Usuario;

@@ -32,8 +32,11 @@ public class Usuario {
 
     private LocalDate dataNascimento;
 
-    @Column(columnDefinition = "TEXT")
-    private String interessesLiterarios;
+    // Alterado para uma coleção de Strings para validar de 1 a 8 gêneros facilmente
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "usuario_interesses", joinColumns = @JoinColumn(name = "usuario_id"))
+    @Column(name = "genero")
+    private Set<String> interessesLiterarios = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

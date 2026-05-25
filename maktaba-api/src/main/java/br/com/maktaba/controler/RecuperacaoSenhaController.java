@@ -1,6 +1,6 @@
 package br.com.maktaba.controler;
 
-import br.com.maktaba.config.EmailService;
+import br.com.maktaba.service.EmailService;
 import br.com.maktaba.model.TokenRecuperacao;
 import br.com.maktaba.model.Usuario;
 import br.com.maktaba.repository.TokenRecuperacaoRepository;

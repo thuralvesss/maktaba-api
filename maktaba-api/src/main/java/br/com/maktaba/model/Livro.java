@@ -29,6 +29,9 @@ public class Livro {
 
     private Boolean disponivel = true;
 
+    // Novo campo para o RF11 (Regra do Administrador)
+    private Boolean emDestaque = false;
+
     private Integer totalPaginas;
 
     private String arquivoPdf; // caminho do arquivo salvo
