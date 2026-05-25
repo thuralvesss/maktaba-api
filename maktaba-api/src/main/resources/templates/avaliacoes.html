@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliacoes - Maktaba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+        body { background-color: var(--bege-claro); }
+        .navbar-custom { background-color: var(--vinho); }
+        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
+        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 24px; }
+        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
+        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 16px 16px 0 0 !important; }
+        .form-control { background-color: var(--bege-claro); border: 1px solid #ccc; border-radius: 10px; }
+        .form-control:focus { border-color: var(--vinho); box-shadow: none; }
+        .estrela { color: #ffc107; font-size: 18px; }
+        h2, h4, h5 { color: var(--marrom); }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <div>
+        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catalogo</a>
+        <a href="/" class="btn btn-outline-bege btn-sm">Home</a>
+    </div>
+</nav>
+
+<div class="container py-4" style="max-width: 750px;">
+
+    <!-- Info do livro -->
+    <div class="card card-custom shadow mb-4">
+        <div class="card-body d-flex gap-3 p-4">
+            <img th:src="${livro.imagemUrl}"
+                 th:alt="${livro.titulo}"
+                 style="width: 80px; height: 110px; object-fit: cover; border-radius: 8px;"
+                 onerror="this.src='https://via.placeholder.com/80x110?text=Capa'"/>
+            <div>
+                <h4 class="fw-bold mb-1" th:text="${livro.titulo}"></h4>
+                <p class="text-muted mb-2" th:text="${livro.autor}"></p>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="estrela">&#9733;</span>
+                    <strong th:text="${media}">0.0</strong>
+                    <span class="text-muted small">(<span th:text="${avaliacoes.size()}">0</span> avaliacoes)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario de avaliacao -->
+    <div class="card card-custom shadow mb-4" th:unless="${jaAvaliou}">
+        <div class="card-header card-header-custom py-3">
+            <h5 class="mb-0">Avaliar este livro</h5>
+        </div>
+        <div class="card-body p-4">
+            <form action="/avaliacoes/avaliar" method="post">
+                <input type="hidden" name="livroId" th:value="${livro.id}"/>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nota</label>
+                    <div class="d-flex gap-2">
+                        <div th:each="i : ${#numbers.sequence(1, 5)}" class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="nota" th:value="${i}" th:id="'nota' + ${i}" required/>
+                            <label class="form-check-label estrela" th:for="'nota' + ${i}" th:text="${i} + ' estrela(s)'"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Comentario</label>
+                    <textarea name="comentario" class="form-control" rows="3" placeholder="Escreva sua opiniao sobre o livro..." required></textarea>
+                </div>
+                <button type="submit" class="btn-vinho">Enviar Avaliacao</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${jaAvaliou}" class="alert mb-4" style="background-color: #d4edda; color: #155724; border-radius: 10px;">
+        Voce ja avaliou este livro.
+    </div>
+
+    <!-- Lista de avaliacoes -->
+    <div class="card card-custom shadow">
+        <div class="card-header card-header-custom py-3">
+            <h5 class="mb-0">Comentarios</h5>
+        </div>
+        <div class="card-body p-4">
+            <div th:if="${avaliacoes.empty}" class="text-muted text-center py-3">
+                Nenhuma avaliacao ainda. Seja o primeiro!
+            </div>
+            <div th:each="avaliacao : ${avaliacoes}" class="border-bottom pb-3 mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <strong th:text="${avaliacao.usuario.nome}"></strong>
+                        <span class="estrela ms-2" th:text="${avaliacao.nota} + ' estrela(s)'"></span>
+                    </div>
+                    <small class="text-muted" th:text="${#temporals.format(avaliacao.dataAvaliacao, 'dd/MM/yyyy')}"></small>
+                </div>
+                <p class="mt-2 mb-0 text-muted" th:text="${avaliacao.comentario}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/livros/catalogo" style="color: var(--vinho); text-decoration: none; font-size: 14px;">Voltar ao catalogo</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
