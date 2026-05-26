@@ -1,69 +1,78 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Catálogo - Maktaba</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         :root {
             --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --bege: #F4EAD4;
         }
-        body { background-color: var(--bege-claro); }
-        .navbar-custom { background-color: var(--vinho); }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
-        .card-livro { background-color: var(--bege); border: none; border-radius: 16px; transition: transform 0.2s; }
-        .card-livro:hover { transform: translateY(-5px); }
-        .badge-genero { background-color: var(--vinho); color: var(--bege); border-radius: 20px; padding: 4px 12px; font-size: 12px; }
-
-        h2, h5, h6 { color: var(--marrom); }
+        body {
+            background-color: var(--bege);
+        }
+        .btn-vinho {
+            background-color: var(--vinho);
+            color: white;
+        }
+        .btn-vinho:hover {
+            background-color: #520b13;
+            color: white;
+        }
+        .card-livro {
+            background-color: #EBDCB9 !important;
+            border: none;
+            border-radius: 16px;
+            transition: transform 0.2s;
+        }
+        .card-livro:hover {
+            transform: translateY(-5px);
+        }
+        .badge-genero {
+            background-color: var(--vinho);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
-    <div>
-        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
-        <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
-        <a href="/perfil" class="btn btn-outline-bege btn-sm">Meu Perfil</a>
-    </div>
-</nav>
 
 <div class="container py-4">
 
     <div th:if="${livrosRecomendados != null and !livrosRecomendados.isEmpty()}" class="mb-5">
-        <h2 class="fw-bold mb-1"> Recomendados para Você</h2>
-        <p class="text-muted small mb-4">Com base nos seus interesses literários e destaques da semana.</p>
+        <h2 class="fw-bold mb-1">Recomendados para Você</h2>
+        <p class="text-muted small mb-4">Com base nos seus interesses literários e destaques.</p>
 
         <div class="row g-4">
-            <div th:each="livro : ${livrosRecomendados}" class="col-md-3 col-sm-6">
-                <div class="card card-livro shadow h-100" style="border: 2px solid var(--vinho);">
-                    <img th:src="${livro.imagemUrl != null and !#strings.isEmpty(livro.imagemUrl)}
-                  ? ${livro.imagemUrl}
-                  : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
-                         th:alt="${livro.titulo}"
-                         class="card-img-top"
-                         style="height: 280px; object-fit: cover; border-radius: 14px 14px 0 0;" />
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <h6 class="card-title fw-bold" th:text="${livro.titulo}"></h6>
-                            <p class="card-text text-muted small mb-2" th:text="${livro.autor}"></p>
-                            <span class="badge-genero" th:text="${livro.genero}"></span>
-                        </div>
+            <div th:each="livroRecom : ${livrosRecomendados}" class="col-md-3 col-sm-6">
+                <div class="card card-livro shadow h-100" style="border: 2px solid var(--vinho) !important; overflow: hidden;">
 
-                        <div class="mt-3">
-                            <a th:href="'/avaliacoes/livro/' + ${livro.id}"
-                               class="btn btn-sm w-100"
-                               style="background-color: var(--vinho); color: var(--bege); border-radius: 20px; font-size: 12px;">
+                    <a th:href="@{/livros/{id}(id=${livroRecom.id})}" class="text-decoration-none text-dark">
+                        <img th:src="${livroRecom.imagemUrl != null and !#strings.isEmpty(livroRecom.imagemUrl)} ? ${livroRecom.imagemUrl} : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
+                             class="card-img-top"
+                             style="height: 280px; object-fit: cover;" />
+
+                        <div class="card-body pb-0">
+                            <h6 class="card-title fw-bold mb-1" th:text="${livroRecom.titulo}"></h6>
+                            <p class="card-text text-muted small mb-2" th:text="${livroRecom.autor}"></p>
+                            <span class="badge-genero" th:text="${livroRecom.genero}"></span>
+                        </div>
+                    </a>
+
+                    <div class="card-body pt-2">
+                        <div class="mt-2">
+                            <a th:href="@{/avaliacoes/livro/{id}(id=${livroRecom.id})}"
+                               class="btn btn-sm w-100 text-white"
+                               style="background-color: var(--vinho); border-radius: 20px; font-size: 12px;">
                                 Ver Avaliações
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -72,39 +81,44 @@
 
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold"> Catálogo Completo</h2>
-        <a href="/livros/admin/novo" class="btn btn-vinho">+ Adicionar Livro</a>
+        <h2 class="fw-bold">Catálogo Completo</h2>
+
+        <a href="/livros/admin/novo"
+           sec:authorize="hasRole('ADMIN')"
+           class="btn btn-vinho">+ Adicionar Livro</a>
     </div>
 
     <div class="row g-4">
         <div th:each="livro : ${livros}" class="col-md-3 col-sm-6">
-            <div class="card card-livro shadow h-100">
-                <img th:src="${livro.imagemUrl != null and !#strings.isEmpty(livro.imagemUrl)}
-              ? ${livro.imagemUrl}
-              : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
-                     th:alt="${livro.titulo}"
-                     class="card-img-top"
-                     style="height: 280px; object-fit: cover; border-radius: 16px 16px 0 0;" />
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <div>
-                        <h6 class="card-title fw-bold" th:text="${livro.titulo}"></h6>
+            <div class="card card-livro shadow h-100" style="overflow: hidden;">
+
+                <a th:href="@{/livros/{id}(id=${livro.id})}" class="text-decoration-none text-dark">
+                    <img th:src="${livro.imagemUrl != null and !#strings.isEmpty(livro.imagemUrl)} ? ${livro.imagemUrl} : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
+                         class="card-img-top"
+                         style="height: 280px; object-fit: cover;" />
+
+                    <div class="card-body pb-0">
+                        <h6 class="card-title fw-bold mb-1" th:text="${livro.titulo}"></h6>
                         <p class="card-text text-muted small mb-2" th:text="${livro.autor}"></p>
                         <span class="badge-genero" th:text="${livro.genero}"></span>
                     </div>
+                </a>
 
-                    <div class="mt-3">
-                        <a th:href="'/avaliacoes/livro/' + ${livro.id}"
-                           class="btn btn-sm w-100"
-                           style="background-color: var(--vinho); color: var(--bege); border-radius: 20px; font-size: 12px;">
+                <div class="card-body pt-2">
+                    <div class="mt-2">
+                        <a th:href="@{/avaliacoes/livro/{id}(id=${livro.id})}"
+                           class="btn btn-sm w-100 text-white"
+                           style="background-color: var(--vinho); border-radius: 20px; font-size: 12px;">
                             Ver Avaliações
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

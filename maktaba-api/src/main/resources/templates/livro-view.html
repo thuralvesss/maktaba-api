@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizar Livro - Maktaba</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+
+    <style>
+        :root {
+            --vinho: #6B0F1A;
+            --bege: #E8D5A3;
+            --bege-claro: #F5EDD0;
+            --marrom: #3D0A0A;
+        }
+
+        body {
+            background-color: var(--bege-claro);
+        }
+
+        .navbar-custom {
+            background-color: var(--vinho);
+        }
+
+        .card-custom {
+            background-color: var(--bege);
+            border: none;
+            border-radius: 16px;
+        }
+
+        .card-header-custom {
+            background-color: var(--vinho);
+            color: var(--bege);
+            border-radius: 16px 16px 0 0 !important;
+        }
+
+        .form-control {
+            background-color: var(--bege-claro);
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            border-color: var(--vinho);
+            box-shadow: none;
+        }
+
+        textarea.form-control {
+            resize: none;
+        }
+
+        .readonly-field {
+            background-color: #f8f1dc !important;
+            cursor: default;
+        }
+
+        .badge-custom {
+            background-color: var(--vinho);
+            color: var(--bege);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-custom px-4 py-3">
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">
+        Maktaba — Admin
+    </a>
+
+    <a href="/livros/catalogo"
+       class="btn btn-sm"
+       style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">
+        ← Voltar ao Catálogo
+    </a>
+</nav>
+
+<div class="container py-4" style="max-width: 650px;">
+
+    <div class="card card-custom shadow">
+
+        <div class="card-header card-header-custom fw-bold">
+            📖 Visualizar Livro
+        </div>
+
+        <div class="card-body p-4">
+
+            <!-- CAPA -->
+            <div class="text-center mb-4">
+                <img th:src="${livro.imagemUrl}"
+                     alt="Capa do Livro"
+                     class="img-fluid rounded shadow"
+                     style="max-height: 300px;">
+            </div>
+
+            <!-- TÍTULO -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Título</label>
+                <input type="text"
+                       class="form-control readonly-field"
+                       th:value="${livro.titulo}"
+                       readonly>
+            </div>
+
+            <!-- AUTOR -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Autor</label>
+                <input type="text"
+                       class="form-control readonly-field"
+                       th:value="${livro.autor}"
+                       readonly>
+            </div>
+
+            <!-- GÊNERO -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Gênero</label>
+                <input type="text"
+                       class="form-control readonly-field"
+                       th:value="${livro.genero}"
+                       readonly>
+            </div>
+
+            <!-- PÁGINAS -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Total de Páginas</label>
+                <input type="number"
+                       class="form-control readonly-field"
+                       th:value="${livro.totalPaginas}"
+                       readonly>
+            </div>
+
+            <!-- DESCRIÇÃO -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Descrição</label>
+                <textarea class="form-control readonly-field"
+                          rows="4"
+                          readonly
+                          th:text="${livro.descricao}">
+                </textarea>
+            </div>
+
+            <!-- PDF -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Arquivo PDF</label>
+
+                <input type="text"
+                       class="form-control readonly-field"
+                       th:value="${livro.arquivoPdf}"
+                       readonly>
+            </div>
+
+            <!-- STATUS -->
+            <div class="d-flex gap-2 flex-wrap">
+
+                <span class="badge-custom"
+                      th:text="${livro.disponivel} ? 'Disponível' : 'Indisponível'">
+                </span>
+
+                <span class="badge-custom"
+                      th:text="${livro.emDestaque} ? 'Em Destaque' : 'Normal'">
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

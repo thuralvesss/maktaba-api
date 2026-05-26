@@ -3,9 +3,10 @@ package br.com.maktaba.controler;
 import br.com.maktaba.model.Livro;
 import br.com.maktaba.model.Usuario;
 import br.com.maktaba.repository.LivroRepository;
-import br.com.maktaba.repository.UsuarioRepository; // Importante para o RF11
-import br.com.maktaba.service.LivroService; // Nosso novo serviço
+import br.com.maktaba.repository.UsuarioRepository;
+import br.com.maktaba.service.LivroService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize; // Importante para a segurança
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,12 @@ import java.util.UUID;
 public class LivroController {
 
     private final LivroRepository livroRepository;
-    private final LivroService livroService; // Adicionado
-    private final UsuarioRepository usuarioRepository; // Adicionado para carregar os interesses
+    private final LivroService livroService;
+    private final UsuarioRepository usuarioRepository;
 
     @Value("${file.upload-dir}")
     private String uploadDir;
 
-    // Atualizado o construtor para receber as novas dependências
     public LivroController(LivroRepository livroRepository, LivroService livroService, UsuarioRepository usuarioRepository) {
         this.livroRepository = livroRepository;
         this.livroService = livroService;
@@ -39,15 +39,12 @@ public class LivroController {
 
     @GetMapping("/catalogo")
     public String catalogo(Model model, Principal principal) {
-        // 1. Mantém a sua listagem padrão de todos os livros
         model.addAttribute("livros", livroRepository.findByDisponivelTrue());
 
-        // 2. Lógica do RF11: Buscar recomendações personalizadas
         Usuario usuarioLogado = null;
         if (principal != null) {
             usuarioLogado = usuarioRepository.findByUsername(principal.getName()).orElse(null);
         } else {
-            // Fallback de teste: pega o primeiro usuário do banco se não houver ninguém autenticado ainda
             usuarioLogado = usuarioRepository.findAll().stream().findFirst().orElse(null);
         }
 
@@ -60,13 +57,26 @@ public class LivroController {
         return "catalogo";
     }
 
+    @GetMapping("/{id}")
+    public String exibirDetalhes(@PathVariable Long id, Model model) {
+        Livro livro = livroRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado: " + id));
+
+        model.addAttribute("livro", livro);
+        return "livro-view";
+    }
+
+    // Bloqueia o acesso ao formulário de criação para quem não for ADMIN
     @GetMapping("/admin/novo")
+    @PreAuthorize("hasRole('ADMIN')")
     public String novoLivro(Model model) {
         model.addAttribute("livro", new Livro());
         return "livro-form";
     }
 
+    // Bloqueia a ação de salvar no banco para quem não for ADMIN
     @PostMapping("/admin/salvar")
+    @PreAuthorize("hasRole('ADMIN')")
     public String salvar(@ModelAttribute Livro livro,
                          @RequestParam(value = "arquivo", required = false) MultipartFile arquivo) throws IOException {
 
@@ -85,7 +95,9 @@ public class LivroController {
         return "redirect:/livros/catalogo";
     }
 
+    // Bloqueia a ação de deletar para quem não for ADMIN
     @PostMapping("/admin/deletar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deletar(@PathVariable Long id) {
         livroRepository.deleteById(id);
         return "redirect:/livros/catalogo";
