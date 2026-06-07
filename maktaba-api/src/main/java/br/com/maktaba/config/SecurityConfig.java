@@ -25,7 +25,10 @@ public class SecurityConfig {
                                 "/recuperar-senha",
                                 "/recuperar-senha/**",
                                 "/sobre",
-                                "/"
+                                "/",
+                                "/*.png",
+                                "/*.jpg",
+                                "/*.ico"
                         ).permitAll()
                         .requestMatchers("/livros/admin/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")

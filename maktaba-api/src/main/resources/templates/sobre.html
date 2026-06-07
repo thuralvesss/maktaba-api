@@ -6,33 +6,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-        body { background-color: var(--bege-claro); }
-        .navbar-custom { background-color: var(--vinho); }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 24px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        .btn-outline-vinho { border: 2px solid var(--vinho); color: var(--vinho); border-radius: 20px; padding: 8px 24px; background: transparent; }
-        .btn-outline-vinho:hover { background-color: var(--vinho); color: var(--bege); }
-        .hero { background-color: var(--vinho); color: var(--bege); }
-        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
-        .plano-card { background-color: var(--bege); border-radius: 16px; border: none; }
-        .plano-card.destaque { background-color: var(--vinho); color: var(--bege); }
-        .plano-card.destaque p { color: var(--bege) !important; }
-        footer { background-color: var(--vinho); color: var(--bege); }
-        h1, h2, h3, h4, h5 { color: var(--marrom); }
-        .hero h1, .hero p, .plano-card.destaque h4 { color: var(--bege); }
+        body { background-color: var(--branco);
+                background-image: url('/bg.png');
+                background-repeat: repeat;
+                background-size: 800px;}
+        .navbar-custom { background-color: var(--amarelo-principal); }
+        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 24px; }
+        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .btn-outline-vinho { border: 2px solid var(--amarelo-principal); color: var(--amarelo-principal); border-radius: 20px; padding: 8px 24px; background: transparent; }
+        .btn-outline-vinho:hover { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
+        .hero { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
+        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .plano-card { background-color: var(--amarelo-claro); border-radius: 16px; border: none; }
+        .plano-card.destaque { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
+        .plano-card.destaque p { color: var(--amarelo-claro) !important; }
+        footer { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
+        h1, h2, h3, h4, h5 { color: var(--marrom-avermelhado); }
+        .hero h1, .hero p, .plano-card.destaque h4 { color: var(--amarelo-claro); }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 150px; height: 60px;" alt="Maktaba"></a>
     <div>
-        <a href="/usuarios/login" class="btn btn-outline-vinho me-2" style="border-color: var(--bege); color: var(--bege);">Entrar</a>
-        <a href="/usuarios/cadastro" class="btn btn-vinho" style="background-color: var(--bege); color: var(--vinho);">Cadastrar-se</a>
+        <a href="/usuarios/login" class="btn btn-outline-vinho me-2" style="border-color: var(--amarelo-claro); color: var(--amarelo-claro);">Entrar</a>
+        <a href="/usuarios/cadastro" class="btn btn-vinho" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Cadastrar-se</a>
     </div>
 </nav>
 
@@ -41,8 +44,8 @@
     <h1 class="display-4 fw-bold">Bem vindo de volta!</h1>
     <p class="lead mb-4">Conheça nossos planos!</p>
     <div class="d-flex justify-content-center gap-3">
-        <a href="/usuarios/login" class="btn btn-vinho" style="background-color: var(--bege); color: var(--vinho);">Entrar</a>
-        <a href="/usuarios/cadastro" class="btn btn-outline-vinho" style="border-color: var(--bege); color: var(--bege);">Cadastrar-se</a>
+        <a href="/usuarios/login" class="btn btn-vinho" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Entrar</a>
+        <a href="/usuarios/cadastro" class="btn btn-outline-vinho" style="border-color: var(--amarelo-claro); color: var(--amarelo-claro);">Cadastrar-se</a>
     </div>
 </div>
 
@@ -54,7 +57,7 @@
             <div class="card plano-card shadow text-center p-4 h-100">
                 <h4 class="fw-bold">PLANO 1</h4>
                 <h5 class="text-muted">Básico</h5>
-                <h3 style="color: var(--vinho);">R$19,90</h3>
+                <h3 style="color: var(--amarelo-principal);">R$19,90</h3>
                 <ul class="list-unstyled text-start mt-3">
                     <li>1 livro por mês</li>
                     <li>Acesso ao catálogo</li>
@@ -75,14 +78,14 @@
                     <li> Suporte prioritário</li>
                     <li> Cancele quando quiser</li>
                 </ul>
-                <a href="/usuarios/cadastro" class="btn mt-3" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">Assinar</a>
+                <a href="/usuarios/cadastro" class="btn mt-3" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;">Assinar</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card plano-card shadow text-center p-4 h-100">
                 <h4 class="fw-bold">PLANO 3</h4>
                 <h5 class="text-muted">Premium</h5>
-                <h3 style="color: var(--vinho);">R$49,90</h3>
+                <h3 style="color: var(--amarelo-principal);">R$49,90</h3>
                 <ul class="list-unstyled text-start mt-3">
                     <li> 4 livros por mês</li>
                     <li> Acesso ao catálogo</li>

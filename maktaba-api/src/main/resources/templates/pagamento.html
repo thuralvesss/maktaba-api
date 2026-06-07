@@ -6,30 +6,38 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-        body { background-color: var(--vinho); min-height: 100vh; display: flex; }
-        .lado-esquerdo { background-color: var(--vinho); color: var(--bege); width: 300px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
-        .lado-direito { background-color: var(--bege-claro); flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px; }
-        .logo { font-size: 28px; font-weight: bold; color: var(--bege); margin-bottom: 30px; }
-        .card-pagamento { background-color: var(--bege); border-radius: 20px; padding: 40px; width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .card-plano { background-color: var(--vinho); color: var(--bege); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
-        .forma-pagamento { background-color: var(--bege-claro); border: 2px solid transparent; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
-        .forma-pagamento:hover { border-color: var(--vinho); }
-        .forma-pagamento input[type="radio"] { accent-color: var(--vinho); }
-        .forma-pagamento.selecionado { border-color: var(--vinho); background-color: #f0e8d0; }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 12px 40px; font-size: 16px; width: 100%; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        h2, h5 { color: var(--marrom); }
+        body { background-color: var(--amarelo-principal); min-height: 100vh; display: flex; }
+        .lado-esquerdo { background-color: var(--amarelo-principal); color: var(--amarelo-claro); width: 300px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
+        .lado-direito { background-color: var(--branco);
+                        background-image: url('/bg.png');
+                        background-repeat: repeat;
+                        background-size: 800px;
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 40px; }
+        .logo { font-size: 28px; font-weight: bold; color: var(--amarelo-claro); margin-bottom: 30px; }
+        .card-pagamento { background-color: var(--amarelo-claro); border-radius: 20px; padding: 40px; width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card-plano { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+        .forma-pagamento { background-color: var(--branco); border: 2px solid transparent; border-radius: 12px; padding: 15px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
+        .forma-pagamento:hover { border-color: var(--amarelo-principal); }
+        .forma-pagamento input[type="radio"] { accent-color: var(--amarelo-principal); }
+        .forma-pagamento.selecionado { border-color: var(--amarelo-principal); background-color: #FFF4CC; }
+        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 12px 40px; font-size: 16px; width: 100%; }
+        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        h2, h5 { color: var(--marrom-avermelhado); }
     </style>
 </head>
 <body>
 <div class="lado-esquerdo">
-    <div class="logo"> Maktaba</div>
-    <p class="text-center" style="color: var(--bege);">Escolha como deseja pagar sua assinatura</p>
+    <div class="logo"><img src="/logo.png" style="width: 250px; height: 100px;" alt="Maktaba"></div>
+    <p class="text-center" style="color: var(--amarelo-claro);">Escolha como deseja pagar sua assinatura</p>
 </div>
 
 <div class="lado-direito">
@@ -40,10 +48,10 @@
         <div class="card-plano">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="mb-1" style="color: var(--bege);">Plano <span th:text="${plano}"></span></h5>
-                    <small style="color: var(--bege); opacity: 0.8;">Cobrança mensal</small>
+                    <h5 class="mb-1" style="color: var(--amarelo-claro);">Plano <span th:text="${plano}"></span></h5>
+                    <small style="color: var(--amarelo-claro); opacity: 0.8;">Cobrança mensal</small>
                 </div>
-                <h3 class="mb-0" style="color: var(--bege);">R$ <span th:text="${valor}"></span></h3>
+                <h3 class="mb-0" style="color: var(--amarelo-claro);">R$ <span th:text="${valor}"></span></h3>
             </div>
         </div>
 
@@ -63,7 +71,7 @@
             <label class="forma-pagamento d-flex align-items-center gap-3 w-100">
                 <input type="radio" name="formaPagamento" value="PIX"/>
                 <div>
-                    <div class="fw-bold"> PIX</div>
+                    <div class="fw-bold">PIX</div>
                     <small class="text-muted">Pagamento instantâneo</small>
                 </div>
             </label>
@@ -80,7 +88,7 @@
         </form>
 
         <p class="text-center mt-3">
-            <a href="/assinatura/planos" style="color: var(--vinho); text-decoration: none; font-size: 14px;">← Voltar aos planos</a>
+            <a href="/assinatura/planos" style="color: var(--amarelo-principal); text-decoration: none; font-size: 14px;">← Voltar aos planos</a>
         </p>
     </div>
 </div>

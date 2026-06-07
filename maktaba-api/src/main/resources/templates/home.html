@@ -6,33 +6,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-        body { background-color: var(--bege-claro); }
-        .navbar-custom { background-color: var(--vinho); }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 8px 20px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
-        .hero { background-color: var(--vinho); color: var(--bege); }
-        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
-        h1, h2, h3, h5 { color: var(--marrom); }
-        .hero h1, .hero p { color: var(--bege); }
+        body { background-color: var(--branco);
+                background-image: url('/bg.png');
+                background-repeat: repeat;
+                background-size: 800px;}
+        .navbar-custom { background-color: var(--amarelo-principal); }
+        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 20px; }
+        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 8px 20px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
+        .hero { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
+        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        h1, h2, h3, h5 { color: var(--marrom-avermelhado); }
+        .hero h1, .hero p { color: var(--amarelo-claro); }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);"> Maktaba</a>
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
     <div>
         <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
         <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
         <a href="/perfil" class="btn btn-outline-bege btn-sm me-2">Meu Perfil</a>
-        <a href="/admin/dashboard" class="btn btn-sm me-2" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;"> Admin</a>
+        <a href="/admin/dashboard" class="btn btn-sm me-2" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;"> Admin</a>
         <form action="/logout" method="post" class="d-inline">
-            <button class="btn btn-sm" style="background-color: #dc3545; color: white; border-radius: 20px;">Sair</button>
+            <button class="btn btn-sm" style="background-color: #A0522D; color: white; border-radius: 20px;">Sair</button>
         </form>
     </div>
 </nav>

@@ -6,33 +6,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-        body { background-color: var(--vinho); min-height: 100vh; display: flex; }
-        .lado-esquerdo { background-color: var(--vinho); color: var(--bege); width: 280px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
-        .lado-direito { background-color: var(--bege-claro); flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
-        .logo { font-size: 28px; font-weight: bold; color: var(--bege); margin-bottom: 30px; }
-        .card-plano { background-color: var(--bege); border-radius: 20px; border: none; padding: 30px; }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 10px 30px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        h2, h4, h5 { color: var(--marrom); }
-        .preco { color: var(--vinho); font-size: 2rem; font-weight: bold; }
-        .nav-link-custom { color: var(--bege); text-decoration: none; display: block; padding: 8px 0; font-size: 14px; }
-        .nav-link-custom:hover { color: var(--bege); text-decoration: underline; }
+        body { background-color: var(--amarelo-principal); min-height: 100vh; display: flex; }
+        .lado-esquerdo { background-color: var(--amarelo-principal); color: var(--amarelo-claro); width: 280px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; }
+        .lado-direito { background-color: var(--branco);
+                        background-image: url('/bg.png');
+                        background-repeat: repeat;
+                        background-size: 800px;
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 40px; }
+        .logo { font-size: 28px; font-weight: bold; color: var(--amarelo-claro); margin-bottom: 30px; }
+        .card-plano { background-color: var(--amarelo-claro); border-radius: 20px; border: none; padding: 30px; }
+        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        h2, h4, h5 { color: var(--marrom-avermelhado); }
+        .preco { color: var(--amarelo-principal); font-size: 2rem; font-weight: bold; }
+        .nav-link-custom { color: var(--amarelo-claro); text-decoration: none; display: block; padding: 8px 0; font-size: 14px; }
+        .nav-link-custom:hover { color: var(--amarelo-claro); text-decoration: underline; }
     </style>
 </head>
 <body>
 <div class="lado-esquerdo">
-    <div class="logo"> LOGO</div>
+    <div class="logo"><img src="/logo.png" style="width: 250px; height: 100px;" alt="Maktaba"></div>
     <a href="/" class="nav-link-custom">Home</a>
     <a href="/livros/catalogo" class="nav-link-custom"> Catálogo</a>
     <a href="/perfil" class="nav-link-custom">Meu Perfil</a>
     <a href="/assinatura/status" class="nav-link-custom"> Minha Assinatura</a>
     <form action="/logout" method="post" class="mt-3">
-        <button class="btn btn-sm" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">Sair</button>
+        <button class="btn btn-sm" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;">Sair</button>
     </form>
 </div>
 
@@ -59,18 +68,18 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-plano shadow text-center h-100 d-flex flex-column" style="background-color: var(--vinho);">
-                <h4 class="fw-bold" style="color: var(--bege);">PLANO 2</h4>
-                <h5 style="color: var(--bege);">Standard</h5>
-                <div style="color: var(--bege); font-size: 2rem; font-weight: bold;">R$34,90</div>
-                <ul class="list-unstyled text-start mt-3 flex-grow-1" style="color: var(--bege);">
+            <div class="card-plano shadow text-center h-100 d-flex flex-column" style="background-color: var(--amarelo-principal);">
+                <h4 class="fw-bold" style="color: var(--amarelo-claro);">PLANO 2</h4>
+                <h5 style="color: var(--amarelo-claro);">Standard</h5>
+                <div style="color: var(--amarelo-claro); font-size: 2rem; font-weight: bold;">R$34,90</div>
+                <ul class="list-unstyled text-start mt-3 flex-grow-1" style="color: var(--amarelo-claro);">
                     <li class="py-1 border-bottom" style="border-color: rgba(255,255,255,0.2) !important;"> 2 livros por mês</li>
                     <li class="py-1 border-bottom" style="border-color: rgba(255,255,255,0.2) !important;"> Acesso ao catálogo</li>
                     <li class="py-1"> Suporte prioritário</li>
                 </ul>
                 <form action="/assinatura/assinar" method="post" class="mt-3">
                     <input type="hidden" name="plano" value="STANDARD"/>
-                    <button class="btn w-100" style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">Assinar</button>
+                    <button class="btn w-100" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;">Assinar</button>
                 </form>
             </div>
         </div>

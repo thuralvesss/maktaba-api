@@ -3,78 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Visualizar Livro - Maktaba</title>
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-
-        body {
-            background-color: var(--bege-claro);
-        }
-
-        .navbar-custom {
-            background-color: var(--vinho);
-        }
-
-        .card-custom {
-            background-color: var(--bege);
-            border: none;
-            border-radius: 16px;
-        }
-
-        .card-header-custom {
-            background-color: var(--vinho);
-            color: var(--bege);
-            border-radius: 16px 16px 0 0 !important;
-        }
-
-        .form-control {
-            background-color: var(--bege-claro);
-            border: 1px solid #ccc;
-            border-radius: 10px;
-        }
-
-        .form-control:focus {
-            border-color: var(--vinho);
-            box-shadow: none;
-        }
-
-        textarea.form-control {
-            resize: none;
-        }
-
-        .readonly-field {
-            background-color: #f8f1dc !important;
-            cursor: default;
-        }
-
-        .badge-custom {
-            background-color: var(--vinho);
-            color: var(--bege);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
+        body { background-color: var(--branco);
+                background-image: url('/bg.png');
+                background-repeat: repeat;
+                background-size: 800px;}
+        .navbar-custom { background-color: var(--amarelo-principal); }
+        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
+        .form-control { background-color: var(--branco); border: 1px solid #ccc; border-radius: 10px; }
+        .form-control:focus { border-color: var(--amarelo-principal); box-shadow: none; }
+        textarea.form-control { resize: none; }
+        .readonly-field { background-color: #fffbe6 !important; cursor: default; }
+        .badge-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); padding: 8px 15px; border-radius: 20px; font-size: 14px; }
     </style>
 </head>
-
 <body>
 
 <nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">
-        Maktaba — Admin
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);">
+        <img src="/admin.png" style="width: 150px; height: 40px;" alt="Maktaba Admin">
     </a>
-
     <a href="/livros/catalogo"
        class="btn btn-sm"
-       style="background-color: var(--bege); color: var(--vinho); border-radius: 20px;">
+       style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;">
         ← Voltar ao Catálogo
     </a>
 </nav>
@@ -84,7 +43,7 @@
     <div class="card card-custom shadow">
 
         <div class="card-header card-header-custom fw-bold">
-            📖 Visualizar Livro
+            Visualizar Livro
         </div>
 
         <div class="card-body p-4">
@@ -146,7 +105,6 @@
             <!-- PDF -->
             <div class="mb-4">
                 <label class="form-label fw-bold">Arquivo PDF</label>
-
                 <input type="text"
                        class="form-control readonly-field"
                        th:value="${livro.arquivoPdf}"
@@ -155,15 +113,12 @@
 
             <!-- STATUS -->
             <div class="d-flex gap-2 flex-wrap">
-
                 <span class="badge-custom"
                       th:text="${livro.disponivel} ? 'Disponível' : 'Indisponível'">
                 </span>
-
                 <span class="badge-custom"
                       th:text="${livro.emDestaque} ? 'Em Destaque' : 'Normal'">
                 </span>
-
             </div>
 
         </div>
@@ -171,6 +126,5 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

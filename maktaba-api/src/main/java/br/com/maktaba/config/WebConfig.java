@@ -15,5 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/pdfs/**")
                 .addResourceLocations("file:" + uploadDir + "/");
+
+        registry.addResourceHandler("/*.png", "/*.jpg", "/*.ico")
+                .addResourceLocations("classpath:/static/");
     }
 }

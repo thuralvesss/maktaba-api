@@ -6,29 +6,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
         :root {
-            --vinho: #6B0F1A;
-            --bege: #E8D5A3;
-            --bege-claro: #F5EDD0;
-            --marrom: #3D0A0A;
+            --amarelo-principal: #D4A017;
+            --amarelo-claro: #FFF4CC;
+            --branco: #FFFFFF;
+            --marrom-avermelhado: #8B4513;
         }
-        body { background-color: var(--bege-claro); }
-        .navbar-custom { background-color: var(--vinho); }
-        .btn-vinho { background-color: var(--vinho); color: var(--bege); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom); color: var(--bege); }
-        .btn-outline-bege { border: 2px solid var(--bege); color: var(--bege); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--bege); color: var(--vinho); }
-        .card-custom { background-color: var(--bege); border: none; border-radius: 16px; }
-        .card-header-custom { background-color: var(--vinho); color: var(--bege); border-radius: 16px 16px 0 0 !important; }
-        .avatar { width: 80px; height: 80px; border-radius: 50%; background-color: var(--vinho); display: flex; align-items: center; justify-content: center; color: var(--bege); font-size: 32px; margin: 0 auto 15px; }
-        h4, h5 { color: var(--marrom); }
+        body { background-color: var(--branco);
+                background-image: url('/bg.png');
+                background-repeat: repeat;
+                background-size: 800px;}
+        .navbar-custom { background-color: var(--amarelo-principal); }
+        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 20px; }
+        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
+        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; background-color: var(--amarelo-principal); display: flex; align-items: center; justify-content: center; color: var(--amarelo-claro); font-size: 32px; margin: 0 auto 15px; }
+        h4, h5 { color: var(--marrom-avermelhado); }
         .badge-ativa { background-color: #28a745; }
-        .badge-cancelada { background-color: #dc3545; }
-        .badge-pausada { background-color: #ffc107; color: #333; }
+        .badge-cancelada { background-color: #A0522D; }
+        .badge-pausada { background-color: #D4A017; color: #333; }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--bege);">Maktaba</a>
+    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
     <div>
         <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
         <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
@@ -40,7 +43,7 @@
 
     <!-- Avatar e nome -->
     <div class="card card-custom shadow mb-4 text-center p-4">
-        <div class="avatar">👤</div>
+        <div class="avatar"></div>
         <h4 class="fw-bold" th:text="${usuario.nome}"></h4>
         <p class="text-muted mb-0" th:text="'@' + ${usuario.username}"></p>
     </div>
@@ -62,7 +65,7 @@
                 <div class="col text-end">
                     <span th:text="${usuario.interessesLiterarios ?: 'Não informado'}"></span>
                     <br/>
-                    <a href="/perfil/generos" class="btn btn-vinho btn-sm mt-1">️ Editar Gêneros</a>
+                    <a href="/perfil/generos" class="btn btn-vinho btn-sm mt-1"> Editar Gêneros</a>
                 </div>
             </div>
         </div>
@@ -92,7 +95,7 @@
                 <div class="mt-3 d-flex gap-2">
                     <a href="/assinatura/planos" class="btn btn-vinho btn-sm">Trocar Plano</a>
                     <form action="/assinatura/cancelar" method="post" class="d-inline">
-                        <button class="btn btn-sm" style="background-color: #dc3545; color: white; border-radius: 20px;">Cancelar</button>
+                        <button class="btn btn-sm" style="background-color: #A0522D; color: white; border-radius: 20px;">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -106,7 +109,7 @@
     <!-- Sair -->
     <div class="text-center">
         <form action="/logout" method="post">
-            <button class="btn" style="background-color: #dc3545; color: white; border-radius: 20px; padding: 10px 30px;">Sair da conta</button>
+            <button class="btn" style="background-color: #A0522D; color: white; border-radius: 20px; padding: 10px 30px;">Sair da conta</button>
         </form>
     </div>
 </div>
