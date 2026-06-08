@@ -15,13 +15,14 @@
                 background-image: url('/bg.png');
                 background-repeat: repeat;
                 background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 24px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
-        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
+        .navbar-mk { background-color: var(--amarelo-principal); }
+        .btn-outline-mk { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-mk:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 24px; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .card-mk { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .card-header-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
         .form-control { background-color: var(--branco); border: 1px solid #ccc; border-radius: 10px; }
         .form-control:focus { border-color: var(--amarelo-principal); box-shadow: none; }
         .estrela { color: #ffc107; font-size: 18px; }
@@ -29,18 +30,18 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
+<nav class="navbar navbar-mk px-4 py-3">
     <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
     <div>
-        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catalogo</a>
-        <a href="/" class="btn btn-outline-bege btn-sm">Home</a>
+        <a href="/livros/catalogo" class="btn btn-outline-mk btn-sm me-2">Catalogo</a>
+        <a href="/" class="btn btn-outline-mk btn-sm">Home</a>
     </div>
 </nav>
 
 <div class="container py-4" style="max-width: 750px;">
 
     <!-- Info do livro -->
-    <div class="card card-custom shadow mb-4">
+    <div class="card card-mk shadow mb-4">
         <div class="card-body d-flex gap-3 p-4">
             <img th:src="${livro.imagemUrl}"
                  th:alt="${livro.titulo}"
@@ -59,8 +60,8 @@
     </div>
 
     <!-- Formulario de avaliacao -->
-    <div class="card card-custom shadow mb-4" th:unless="${jaAvaliou}">
-        <div class="card-header card-header-custom py-3">
+    <div class="card card-mk shadow mb-4" th:unless="${jaAvaliou}">
+        <div class="card-header card-header-mk py-3">
             <h5 class="mb-0">Avaliar este livro</h5>
         </div>
         <div class="card-body p-4">
@@ -79,7 +80,7 @@
                     <label class="form-label fw-bold">Comentario</label>
                     <textarea name="comentario" class="form-control" rows="3" placeholder="Escreva sua opiniao sobre o livro..." required></textarea>
                 </div>
-                <button type="submit" class="btn-vinho">Enviar Avaliacao</button>
+                <button type="submit" class="btn-mk">Enviar Avaliacao</button>
             </form>
         </div>
     </div>
@@ -89,8 +90,8 @@
     </div>
 
     <!-- Lista de avaliacoes -->
-    <div class="card card-custom shadow">
-        <div class="card-header card-header-custom py-3">
+    <div class="card card-mk shadow">
+        <div class="card-header card-header-mk py-3">
             <h5 class="mb-0">Comentarios</h5>
         </div>
         <div class="card-body p-4">

@@ -1,78 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Maktaba - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        :root {
-            --amarelo-principal: #D4A017;
-            --amarelo-claro: #FFF4CC;
-            --branco: #FFFFFF;
-            --marrom-avermelhado: #8B4513;
-        }
-        body { background-color: var(--branco);
-                background-image: url('/bg.png');
-                background-repeat: repeat;
-                background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 8px 20px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .hero { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
-        h1, h2, h3, h5 { color: var(--marrom-avermelhado); }
-        .hero h1, .hero p { color: var(--amarelo-claro); }
+        :root { --am: #D4A017; --am-c: #FFF4CC; --br: #FFFFFF; --ma: #8B4513; }
+        body { background-color: var(--br); background-image: url('/bg.png'); background-repeat: repeat; background-size: 800px; }
+        .navbar-mk { background-color: var(--am); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .btn-mk { background-color: var(--am); color: var(--am-c); border: none; border-radius: 20px; padding: 8px 22px; font-weight: 600; transition: all .2s; }
+        .btn-mk:hover { background-color: var(--ma); color: var(--am-c); }
+        .btn-outline-mk { border: 2px solid var(--am-c); color: var(--am-c); border-radius: 20px; padding: 6px 18px; background: transparent; font-weight: 500; transition: all .2s; }
+        .btn-outline-mk:hover { background-color: var(--am-c); color: var(--am); }
+        .btn-admin-mk { background-color: var(--am-c); color: var(--am); border: none; border-radius: 20px; padding: 6px 18px; font-weight: 700; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .card-mk { background-color: var(--am-c); border: none; border-radius: 20px; transition: transform .2s, box-shadow .2s; }
+        .card-mk:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(212,160,23,0.3) !important; }
+        h2, h5 { color: var(--ma); }
+        .greeting { font-size: 0.9rem; color: var(--am-c); opacity: 0.9; }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
-    <div>
-        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
-        <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
-        <a href="/perfil" class="btn btn-outline-bege btn-sm me-2">Meu Perfil</a>
-        <a href="/admin/dashboard" class="btn btn-sm me-2" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;"> Admin</a>
+<nav class="navbar navbar-mk px-4 py-3 d-flex justify-content-between align-items-center">
+    <a href="/" class="navbar-brand"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+        <span th:if="${#authentication != null}"
+              class="greeting me-1"
+              th:text="'Olá, ' + ${#authentication.name} + '!'">
+        </span>
+        <a href="/livros/catalogo" class="btn btn-outline-mk btn-sm">Catálogo</a>
+        <a href="/leitura" class="btn btn-outline-mk btn-sm">Leituras</a>
+        <a href="/assinatura/planos" class="btn btn-outline-mk btn-sm">Assinatura</a>
+        <a href="/perfil" class="btn btn-outline-mk btn-sm">Perfil</a>
+        <a href="/admin/dashboard" sec:authorize="hasRole('ADMIN')" class="btn btn-admin-mk btn-sm">Admin</a>
         <form action="/logout" method="post" class="d-inline">
-            <button class="btn btn-sm" style="background-color: #A0522D; color: white; border-radius: 20px;">Sair</button>
+            <button class="btn btn-danger-mk btn-sm">Sair</button>
         </form>
     </div>
 </nav>
 
 <div class="container py-5">
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h1></h1>
-                <h5 class="fw-bold mt-2">Catálogo</h5>
-                <p class="text-muted">Explore nossos livros disponíveis</p>
-                <a href="/livros/catalogo" class="btn btn-vinho mt-auto">Acessar</a>
+    <h2 class="fw-bold mb-1">Bem-vindo ao Maktaba</h2>
+    <p class="text-muted mb-4">O que você quer fazer hoje?</p>
+    <div class="row g-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-mk shadow text-center p-4 h-100 d-flex flex-column">
+                <div style="font-size:2.5rem;margin-bottom:12px;">&#128218;</div>
+                <h5 class="fw-bold">Catálogo</h5>
+                <p class="text-muted small flex-grow-1">Explore todos os livros disponíveis</p>
+                <a href="/livros/catalogo" class="btn btn-mk mt-auto">Acessar</a>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h1></h1>
-                <h5 class="fw-bold mt-2">Assinatura</h5>
-                <p class="text-muted">Escolha seu plano de leitura</p>
-                <a href="/assinatura/planos" class="btn btn-vinho mt-auto">Ver Planos</a>
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-mk shadow text-center p-4 h-100 d-flex flex-column">
+                <div style="font-size:2.5rem;margin-bottom:12px;">&#11088;</div>
+                <h5 class="fw-bold">Assinatura</h5>
+                <p class="text-muted small flex-grow-1">Escolha ou gerencie seu plano</p>
+                <a href="/assinatura/planos" class="btn btn-mk mt-auto">Ver Planos</a>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h1></h1>
-                <h5 class="fw-bold mt-2">Leituras</h5>
-                <p class="text-muted">Acompanhe seu progresso</p>
-                <a href="/leitura" class="btn btn-vinho mt-auto">Acessar</a>
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-mk shadow text-center p-4 h-100 d-flex flex-column">
+                <div style="font-size:2.5rem;margin-bottom:12px;">&#128214;</div>
+                <h5 class="fw-bold">Minhas Leituras</h5>
+                <p class="text-muted small flex-grow-1">Acompanhe seu progresso de leitura</p>
+                <a href="/leitura" class="btn btn-mk mt-auto">Acessar</a>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card card-custom shadow text-center p-4 h-100">
-                <h1></h1>
-                <h5 class="fw-bold mt-2">Perfil</h5>
-                <p class="text-muted">Gerencie seus dados</p>
-                <a href="/perfil" class="btn btn-vinho mt-auto">Acessar</a>
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-mk shadow text-center p-4 h-100 d-flex flex-column">
+                <div style="font-size:2.5rem;margin-bottom:12px;">&#128100;</div>
+                <h5 class="fw-bold">Meu Perfil</h5>
+                <p class="text-muted small flex-grow-1">Gerencie seus dados e preferências</p>
+                <a href="/perfil" class="btn btn-mk mt-auto">Acessar</a>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

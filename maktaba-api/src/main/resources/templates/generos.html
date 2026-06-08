@@ -15,26 +15,27 @@
                 background-image: url('/bg.png');
                 background-repeat: repeat;
                 background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 20px; }
-        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px 20px 0 0 !important; }
+        .navbar-mk { background-color: var(--amarelo-principal); }
+        .btn-outline-mk { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-mk:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .card-mk { background-color: var(--amarelo-claro); border: none; border-radius: 20px; }
+        .card-header-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px 20px 0 0 !important; }
         .form-check-input:checked { background-color: var(--amarelo-principal); border-color: var(--amarelo-principal); }
         h4, h5 { color: var(--marrom-avermelhado); }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
+<nav class="navbar navbar-mk px-4 py-3">
     <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
-    <a href="/perfil" class="btn btn-outline-bege btn-sm">Voltar ao Perfil</a>
+    <a href="/perfil" class="btn btn-outline-mk btn-sm">Voltar ao Perfil</a>
 </nav>
 
 <div class="container py-5" style="max-width: 600px;">
-    <div class="card card-custom shadow">
-        <div class="card-header card-header-custom py-3">
+    <div class="card card-mk shadow">
+        <div class="card-header card-header-mk py-3">
             <h4 class="mb-0">Meus Generos Literarios</h4>
         </div>
         <div class="card-body p-4">
@@ -63,7 +64,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <span id="contador" class="text-muted small">0 generos selecionados</span>
-                    <button type="submit" class="btn-vinho">Salvar</button>
+                    <button type="submit" class="btn-mk">Salvar</button>
                 </div>
             </form>
         </div>

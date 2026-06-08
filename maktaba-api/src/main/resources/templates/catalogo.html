@@ -5,77 +5,69 @@
     <title>Catálogo - Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        :root {
-            --amarelo-principal: #D4A017;
-            --amarelo-claro: #FFF4CC;
-            --branco: #FFFFFF;
-            --marrom-avermelhado: #8B4513;
-        }
-        body { background-color: var(--branco);
-                background-image: url('/bg.png');
-                background-repeat: repeat;
-                background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .card-livro { background-color: var(--amarelo-claro); border: none; border-radius: 16px; transition: transform 0.2s; overflow: hidden; }
-        .card-livro:hover { transform: translateY(-5px); }
-        .card-recomendado { background-color: var(--amarelo-claro); border: 2px solid var(--amarelo-principal) !important; border-radius: 16px; transition: transform 0.2s; overflow: hidden; }
-        .card-recomendado:hover { transform: translateY(-5px); }
-        .badge-genero { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px; padding: 4px 12px; font-size: 12px; display: inline-block; }
-        h2, h5, h6 { color: var(--marrom-avermelhado); }
+        :root { --am: #D4A017; --am-c: #FFF4CC; --br: #FFFFFF; --ma: #8B4513; }
+        body { background-color: var(--br); background-image: url('/bg.png'); background-repeat: repeat; background-size: 800px; }
+        .navbar-mk { background-color: var(--am); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .btn-mk { background-color: var(--am); color: var(--am-c); border: none; border-radius: 20px; padding: 8px 22px; font-weight: 600; }
+        .btn-mk:hover { background-color: var(--ma); color: var(--am-c); }
+        .btn-outline-mk { border: 2px solid var(--am-c); color: var(--am-c); border-radius: 20px; padding: 6px 18px; background: transparent; font-weight: 500; }
+        .btn-outline-mk:hover { background-color: var(--am-c); color: var(--am); }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .card-livro { background-color: var(--am-c); border: none; border-radius: 16px; transition: transform .2s; overflow: hidden; }
+        .card-livro:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212,160,23,0.3) !important; }
+        .card-recom { background-color: var(--am-c); border: 2px solid var(--am) !important; border-radius: 16px; transition: transform .2s; overflow: hidden; }
+        .card-recom:hover { transform: translateY(-5px); }
+        .badge-mk { background-color: var(--am); color: var(--am-c); border-radius: 20px; padding: 4px 12px; font-size: 12px; display: inline-block; }
+        .btn-aval { background-color: var(--am); color: var(--am-c); border-radius: 20px; font-size: 12px; border: none; padding: 6px 10px; width: 100%; font-weight: 600; }
+        .btn-aval:hover { background-color: var(--ma); color: var(--am-c); }
+        h2, h5, h6 { color: var(--ma); }
+        hr.divider { border-top: 1px solid var(--am); opacity: 0.25; margin: 3rem 0; }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
-    <div>
-        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
-        <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm me-2">Assinar</a>
-        <a href="/perfil" class="btn btn-outline-bege btn-sm">Meu Perfil</a>
+<nav class="navbar navbar-mk px-4 py-3 d-flex justify-content-between align-items-center">
+    <a href="/" class="navbar-brand"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+        <a href="/" class="btn btn-outline-mk btn-sm">Home</a>
+        <a href="/leitura" class="btn btn-outline-mk btn-sm">Leituras</a>
+        <a href="/perfil" class="btn btn-outline-mk btn-sm">Perfil</a>
+        <form action="/logout" method="post" class="d-inline">
+            <button class="btn btn-danger-mk btn-sm">Sair</button>
+        </form>
     </div>
 </nav>
 
 <div class="container py-4">
 
     <!-- Recomendados -->
-    <div th:if="${livrosRecomendados != null and !livrosRecomendados.isEmpty()}" class="mb-5">
+    <div th:if="${livrosRecomendados != null and !livrosRecomendados.isEmpty()}" class="mb-2">
         <h2 class="fw-bold mb-1">Recomendados para Você</h2>
         <p class="text-muted small mb-4">Com base nos seus interesses literários e destaques.</p>
         <div class="row g-4">
-            <div th:each="livroRecom : ${livrosRecomendados}" class="col-md-3 col-sm-6">
-                <div class="card card-recomendado shadow h-100">
-                    <a th:href="@{/livros/{id}(id=${livroRecom.id})}" class="text-decoration-none text-dark">
-                        <img th:src="${livroRecom.imagemUrl != null and !#strings.isEmpty(livroRecom.imagemUrl)} ? ${livroRecom.imagemUrl} : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
-                             class="card-img-top"
-                             style="height: 280px; object-fit: cover;" />
-                        <div class="card-body pb-0">
-                            <h6 class="card-title fw-bold mb-1" th:text="${livroRecom.titulo}"></h6>
-                            <p class="card-text text-muted small mb-2" th:text="${livroRecom.autor}"></p>
-                            <span class="badge-genero" th:text="${livroRecom.genero}"></span>
+            <div th:each="livro : ${livrosRecomendados}" class="col-md-3 col-sm-6">
+                <div class="card card-recom shadow h-100">
+                    <a th:href="@{/livros/{id}(id=${livro.id})}" class="text-decoration-none text-dark">
+                        <img th:src="${livro.imagemUrl != null and !#strings.isEmpty(livro.imagemUrl)} ? ${livro.imagemUrl} : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
+                             class="card-img-top" style="height: 260px; object-fit: cover;"/>
+                        <div class="card-body pb-1">
+                            <h6 class="fw-bold mb-1" th:text="${livro.titulo}"></h6>
+                            <p class="text-muted small mb-2" th:text="${livro.autor}"></p>
+                            <span class="badge-mk" th:text="${livro.genero}"></span>
                         </div>
                     </a>
                     <div class="card-body pt-2">
-                        <a th:href="@{/avaliacoes/livro/{id}(id=${livroRecom.id})}"
-                           class="btn btn-sm w-100"
-                           style="background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px; font-size: 12px;">
-                            Ver Avaliações
-                        </a>
+                        <a th:href="@{/avaliacoes/livro/{id}(id=${livro.id})}" class="btn-aval">Ver Avaliações</a>
                     </div>
                 </div>
             </div>
         </div>
-        <hr class="mt-5" style="border-top: 1px solid var(--amarelo-principal); opacity: 0.3;">
+        <hr class="divider">
     </div>
 
-    <!-- Catálogo completo -->
+    <!-- Catálogo -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold">Catálogo de Livros</h2>
-        <a href="/livros/admin/novo"
-           sec:authorize="hasRole('ADMIN')"
-           class="btn btn-vinho">+ Adicionar Livro</a>
+        <h2 class="fw-bold mb-0">Catálogo de Livros</h2>
+        <a href="/livros/admin/novo" sec:authorize="hasRole('ADMIN')" class="btn btn-mk">+ Adicionar Livro</a>
     </div>
 
     <div class="row g-4">
@@ -83,26 +75,20 @@
             <div class="card card-livro shadow h-100">
                 <a th:href="@{/livros/{id}(id=${livro.id})}" class="text-decoration-none text-dark">
                     <img th:src="${livro.imagemUrl != null and !#strings.isEmpty(livro.imagemUrl)} ? ${livro.imagemUrl} : 'https://via.placeholder.com/200x280?text=Sem+Capa'"
-                         class="card-img-top"
-                         style="height: 280px; object-fit: cover;" />
-                    <div class="card-body pb-0">
-                        <h6 class="card-title fw-bold mb-1" th:text="${livro.titulo}"></h6>
-                        <p class="card-text text-muted small mb-2" th:text="${livro.autor}"></p>
-                        <span class="badge-genero" th:text="${livro.genero}"></span>
+                         class="card-img-top" style="height: 260px; object-fit: cover;"/>
+                    <div class="card-body pb-1">
+                        <h6 class="fw-bold mb-1" th:text="${livro.titulo}"></h6>
+                        <p class="text-muted small mb-2" th:text="${livro.autor}"></p>
+                        <span class="badge-mk" th:text="${livro.genero}"></span>
                     </div>
                 </a>
                 <div class="card-body pt-2">
-                    <a th:href="@{/avaliacoes/livro/{id}(id=${livro.id})}"
-                       class="btn btn-sm w-100"
-                       style="background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px; font-size: 12px;">
-                        Ver Avaliações
-                    </a>
+                    <a th:href="@{/avaliacoes/livro/{id}(id=${livro.id})}" class="btn-aval">Ver Avaliações</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

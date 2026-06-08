@@ -5,115 +5,110 @@
     <title>Meu Perfil - Maktaba</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <style>
-        :root {
-            --amarelo-principal: #D4A017;
-            --amarelo-claro: #FFF4CC;
-            --branco: #FFFFFF;
-            --marrom-avermelhado: #8B4513;
-        }
-        body { background-color: var(--branco);
-                background-image: url('/bg.png');
-                background-repeat: repeat;
-                background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 20px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
-        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
-        .avatar { width: 80px; height: 80px; border-radius: 50%; background-color: var(--amarelo-principal); display: flex; align-items: center; justify-content: center; color: var(--amarelo-claro); font-size: 32px; margin: 0 auto 15px; }
-        h4, h5 { color: var(--marrom-avermelhado); }
+        :root { --am: #D4A017; --am-c: #FFF4CC; --br: #FFFFFF; --ma: #8B4513; }
+        body { background-color: var(--br); background-image: url('/bg.png'); background-repeat: repeat; background-size: 800px; }
+        .navbar-mk { background-color: var(--am); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .btn-mk { background-color: var(--am); color: var(--am-c); border: none; border-radius: 20px; padding: 8px 22px; font-weight: 600; }
+        .btn-mk:hover { background-color: var(--ma); color: var(--am-c); }
+        .btn-mk-sm { background-color: var(--am); color: var(--am-c); border: none; border-radius: 20px; padding: 5px 16px; font-size: 13px; font-weight: 600; }
+        .btn-outline-mk { border: 2px solid var(--am-c); color: var(--am-c); border-radius: 20px; padding: 6px 18px; background: transparent; font-weight: 500; }
+        .btn-outline-mk:hover { background-color: var(--am-c); color: var(--am); }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .card-mk { background-color: var(--am-c); border: none; border-radius: 16px; }
+        .card-header-mk { background-color: var(--am); color: var(--am-c); border-radius: 16px 16px 0 0 !important; padding: 12px 20px; font-weight: 600; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; background-color: var(--am); display: flex; align-items: center; justify-content: center; color: var(--am-c); font-size: 36px; font-weight: bold; margin: 0 auto 15px; }
         .badge-ativa { background-color: #28a745; }
-        .badge-cancelada { background-color: #A0522D; }
-        .badge-pausada { background-color: #D4A017; color: #333; }
+        .badge-cancelada { background-color: #c0392b; }
+        .badge-pausada { background-color: var(--am); color: #333; }
+        h4, h5 { color: var(--ma); }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
-    <div>
-        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
-        <a href="/livros/catalogo" class="btn btn-outline-bege btn-sm me-2">Catálogo</a>
-        <a href="/assinatura/planos" class="btn btn-outline-bege btn-sm">Planos</a>
+<nav class="navbar navbar-mk px-4 py-3 d-flex justify-content-between align-items-center">
+    <a href="/" class="navbar-brand"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
+    <div class="d-flex gap-2">
+        <a href="/" class="btn btn-outline-mk btn-sm">Home</a>
+        <a href="/livros/catalogo" class="btn btn-outline-mk btn-sm">Catálogo</a>
+        <a href="/leitura" class="btn btn-outline-mk btn-sm">Leituras</a>
+        <form action="/logout" method="post" class="d-inline">
+            <button class="btn btn-danger-mk btn-sm">Sair</button>
+        </form>
     </div>
 </nav>
 
-<div class="container py-4" style="max-width: 600px;">
+<div class="container py-4" style="max-width: 620px;">
 
-    <!-- Avatar e nome -->
-    <div class="card card-custom shadow mb-4 text-center p-4">
-        <div class="avatar"></div>
-        <h4 class="fw-bold" th:text="${usuario.nome}"></h4>
-        <p class="text-muted mb-0" th:text="'@' + ${usuario.username}"></p>
+    <!-- Avatar -->
+    <div class="card card-mk shadow mb-4 text-center p-4">
+        <div class="avatar" th:text="${#strings.substring(usuario.nome, 0, 1)}">U</div>
+        <h4 class="fw-bold mb-0" th:text="${usuario.nome}"></h4>
+        <p class="text-muted small" th:text="'@' + ${usuario.username}"></p>
     </div>
 
-    <!-- Dados pessoais -->
-    <div class="card card-custom shadow mb-4">
-        <div class="card-header card-header-custom fw-bold"> Meus Dados</div>
+    <!-- Dados -->
+    <div class="card card-mk shadow mb-4">
+        <div class="card-header-mk">Meus Dados</div>
         <div class="card-body">
-            <div class="row py-2 border-bottom">
-                <div class="col text-muted">Email</div>
+            <div class="row py-2 border-bottom align-items-center">
+                <div class="col text-muted small">Email</div>
                 <div class="col text-end fw-bold" th:text="${usuario.email}"></div>
             </div>
-            <div class="row py-2 border-bottom">
-                <div class="col text-muted">Data de Nascimento</div>
+            <div class="row py-2 border-bottom align-items-center">
+                <div class="col text-muted small">Data de Nascimento</div>
                 <div class="col text-end fw-bold" th:text="${usuario.dataNascimento}"></div>
             </div>
-            <div class="row py-2">
-                <div class="col text-muted">Interesses</div>
+            <div class="row py-2 align-items-center">
+                <div class="col text-muted small">Gêneros de Interesse</div>
                 <div class="col text-end">
-                    <span th:text="${usuario.interessesLiterarios ?: 'Não informado'}"></span>
-                    <br/>
-                    <a href="/perfil/generos" class="btn btn-vinho btn-sm mt-1"> Editar Gêneros</a>
+                    <span class="text-muted small" th:text="${usuario.interessesLiterarios ?: 'Não informado'}"></span><br/>
+                    <a href="/perfil/generos" class="btn-mk-sm mt-1 d-inline-block">Editar Gêneros</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Assinatura -->
-    <div class="card card-custom shadow mb-4">
-        <div class="card-header card-header-custom fw-bold">Minha Assinatura</div>
+    <div class="card card-mk shadow mb-4">
+        <div class="card-header-mk">Minha Assinatura</div>
         <div class="card-body">
             <div th:if="${assinatura}">
-                <div class="row py-2 border-bottom">
-                    <div class="col text-muted">Plano</div>
+                <div class="row py-2 border-bottom align-items-center">
+                    <div class="col text-muted small">Plano</div>
                     <div class="col text-end fw-bold" th:text="${assinatura.plano}"></div>
                 </div>
-                <div class="row py-2 border-bottom">
-                    <div class="col text-muted">Status</div>
+                <div class="row py-2 border-bottom align-items-center">
+                    <div class="col text-muted small">Status</div>
                     <div class="col text-end">
-                            <span class="badge"
-                                  th:classappend="${assinatura.status == 'ATIVA'} ? 'badge-ativa' : (${assinatura.status == 'CANCELADA'} ? 'badge-cancelada' : 'badge-pausada')"
-                                  th:text="${assinatura.status}"></span>
+                        <span class="badge"
+                              th:classappend="${assinatura.status == 'ATIVA'} ? 'badge-ativa' : (${assinatura.status == 'CANCELADA'} ? 'badge-cancelada' : 'badge-pausada')"
+                              th:text="${assinatura.status}"></span>
                     </div>
                 </div>
-                <div class="row py-2">
-                    <div class="col text-muted">Renovação</div>
+                <div class="row py-2 align-items-center">
+                    <div class="col text-muted small">Renovação</div>
                     <div class="col text-end fw-bold" th:text="${assinatura.dataRenovacao}"></div>
                 </div>
-                <div class="mt-3 d-flex gap-2">
-                    <a href="/assinatura/planos" class="btn btn-vinho btn-sm">Trocar Plano</a>
+                <div class="mt-3 d-flex gap-2 flex-wrap">
+                    <a href="/assinatura/planos" class="btn btn-mk btn-sm">Trocar Plano</a>
+                    <a href="/assinatura/status" class="btn btn-mk btn-sm">Ver Status</a>
                     <form action="/assinatura/cancelar" method="post" class="d-inline">
-                        <button class="btn btn-sm" style="background-color: #A0522D; color: white; border-radius: 20px;">Cancelar</button>
+                        <button class="btn btn-sm btn-danger-mk">Cancelar Assinatura</button>
                     </form>
                 </div>
             </div>
             <div th:unless="${assinatura}">
-                <p class="text-muted">Você não possui assinatura ativa.</p>
-                <a href="/assinatura/planos" class="btn btn-vinho btn-sm">Ver Planos</a>
+                <p class="text-muted mb-3">Você não possui assinatura ativa.</p>
+                <a href="/assinatura/planos" class="btn btn-mk btn-sm">Ver Planos</a>
             </div>
         </div>
     </div>
 
-    <!-- Sair -->
     <div class="text-center">
         <form action="/logout" method="post">
-            <button class="btn" style="background-color: #A0522D; color: white; border-radius: 20px; padding: 10px 30px;">Sair da conta</button>
+            <button class="btn btn-danger-mk px-4 py-2">Sair da conta</button>
         </form>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

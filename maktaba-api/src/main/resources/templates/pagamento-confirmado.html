@@ -15,28 +15,29 @@
                 background-image: url('/bg.png');
                 background-repeat: repeat;
                 background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-outline-bege { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
-        .btn-outline-bege:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 20px; }
-        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px 20px 0 0 !important; }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .navbar-mk { background-color: var(--amarelo-principal); }
+        .btn-outline-mk { border: 2px solid var(--amarelo-claro); color: var(--amarelo-claro); border-radius: 20px; padding: 6px 16px; background: transparent; }
+        .btn-outline-mk:hover { background-color: var(--amarelo-claro); color: var(--amarelo-principal); }
+        .card-mk { background-color: var(--amarelo-claro); border: none; border-radius: 20px; }
+        .card-header-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 20px 20px 0 0 !important; }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
         h2, h5 { color: var(--marrom-avermelhado); }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
+<nav class="navbar navbar-mk px-4 py-3">
     <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 100px; height: 40px;" alt="Maktaba"></a>
     <div>
-        <a href="/" class="btn btn-outline-bege btn-sm me-2">Home</a>
-        <a href="/assinatura/status" class="btn btn-outline-bege btn-sm">Minha Assinatura</a>
+        <a href="/" class="btn btn-outline-mk btn-sm me-2">Home</a>
+        <a href="/assinatura/status" class="btn btn-outline-mk btn-sm">Minha Assinatura</a>
     </div>
 </nav>
 
 <div class="container py-5" style="max-width: 550px;">
-    <div class="card card-custom shadow text-center">
-        <div class="card-header card-header-custom py-4">
+    <div class="card card-mk shadow text-center">
+        <div class="card-header card-header-mk py-4">
             <h3 class="mb-0">Pagamento Recebido!</h3>
         </div>
         <div class="card-body p-4">
@@ -59,7 +60,7 @@
                 </div>
             </div>
 
-            <a href="/assinatura/status" class="btn btn-vinho w-100">Ver minha assinatura</a>
+            <a href="/assinatura/status" class="btn btn-mk w-100">Ver minha assinatura</a>
         </div>
     </div>
 </div>

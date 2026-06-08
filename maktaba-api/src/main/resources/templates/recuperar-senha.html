@@ -12,16 +12,17 @@
             --marrom-avermelhado: #8B4513;
         }
         body { background-color: var(--amarelo-principal); min-height: 100vh; display: flex; justify-content: center; align-items: center; }
-        .card-custom { background-color: var(--amarelo-claro); border-radius: 20px; padding: 40px; width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card-mk { background-color: var(--amarelo-claro); border-radius: 20px; padding: 40px; width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .form-control { background-color: var(--branco); border: none; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
         .form-control:focus { background-color: var(--branco); border: 2px solid var(--amarelo-principal); box-shadow: none; }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 40px; font-size: 16px; width: 100%; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 40px; font-size: 16px; width: 100%; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
         h2 { color: var(--marrom-avermelhado); }
     </style>
 </head>
 <body>
-<div class="card-custom">
+<div class="card-mk">
     <h2 class="fw-bold mb-2">Recuperar Senha</h2>
     <p class="text-muted mb-4" style="font-size: 14px;">Digite seu e-mail cadastrado e enviaremos um link para redefinir sua senha.</p>
 
@@ -30,7 +31,7 @@
 
     <form action="/recuperar-senha/solicitar" method="post">
         <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required/>
-        <button type="submit" class="btn-vinho">Enviar link</button>
+        <button type="submit" class="btn-mk">Enviar link</button>
     </form>
     <p class="text-center mt-3 mb-0">
         <a href="/usuarios/login" style="color: var(--amarelo-principal); text-decoration: none; font-size: 14px;">Voltar para o login</a>

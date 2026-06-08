@@ -15,13 +15,14 @@
                 background-image: url('/bg.png');
                 background-repeat: repeat;
                 background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 24px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .navbar-mk { background-color: var(--amarelo-principal); }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 8px 24px; }
+        .btn-danger-mk { background-color: #c0392b; color: white; border: none; border-radius: 20px; padding: 6px 18px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
         .btn-outline-vinho { border: 2px solid var(--amarelo-principal); color: var(--amarelo-principal); border-radius: 20px; padding: 8px 24px; background: transparent; }
         .btn-outline-vinho:hover { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
         .hero { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .card-mk { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
         .plano-card { background-color: var(--amarelo-claro); border-radius: 16px; border: none; }
         .plano-card.destaque { background-color: var(--amarelo-principal); color: var(--amarelo-claro); }
         .plano-card.destaque p { color: var(--amarelo-claro) !important; }
@@ -31,11 +32,11 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
+<nav class="navbar navbar-mk px-4 py-3">
     <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/logo.png" style="width: 150px; height: 60px;" alt="Maktaba"></a>
     <div>
         <a href="/usuarios/login" class="btn btn-outline-vinho me-2" style="border-color: var(--amarelo-claro); color: var(--amarelo-claro);">Entrar</a>
-        <a href="/usuarios/cadastro" class="btn btn-vinho" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Cadastrar-se</a>
+        <a href="/usuarios/cadastro" class="btn btn-mk" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Cadastrar-se</a>
     </div>
 </nav>
 
@@ -44,7 +45,7 @@
     <h1 class="display-4 fw-bold">Bem vindo de volta!</h1>
     <p class="lead mb-4">Conheça nossos planos!</p>
     <div class="d-flex justify-content-center gap-3">
-        <a href="/usuarios/login" class="btn btn-vinho" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Entrar</a>
+        <a href="/usuarios/login" class="btn btn-mk" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal);">Entrar</a>
         <a href="/usuarios/cadastro" class="btn btn-outline-vinho" style="border-color: var(--amarelo-claro); color: var(--amarelo-claro);">Cadastrar-se</a>
     </div>
 </div>
@@ -64,7 +65,7 @@
                     <li> Suporte por e-mail</li>
                     <li> Cancele quando quiser</li>
                 </ul>
-                <a href="/usuarios/cadastro" class="btn btn-vinho mt-3">Assinar</a>
+                <a href="/usuarios/cadastro" class="btn btn-mk mt-3">Assinar</a>
             </div>
         </div>
         <div class="col-md-3">
@@ -92,7 +93,7 @@
                     <li> Suporte 24/7</li>
                     <li> Cancele quando quiser</li>
                 </ul>
-                <a href="/usuarios/cadastro" class="btn btn-vinho mt-3">Assinar</a>
+                <a href="/usuarios/cadastro" class="btn btn-mk mt-3">Assinar</a>
             </div>
         </div>
     </div>

@@ -15,24 +15,30 @@
                 background-image: url('/bg.png');
                 background-repeat: repeat;
                 background-size: 800px;}
-        .navbar-custom { background-color: var(--amarelo-principal); }
-        .card-custom { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
-        .card-header-custom { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
+        .navbar-mk { background-color: var(--amarelo-principal); }
+        .card-mk { background-color: var(--amarelo-claro); border: none; border-radius: 16px; }
+        .card-header-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border-radius: 16px 16px 0 0 !important; }
         .form-control { background-color: var(--branco); border: 1px solid #ccc; border-radius: 10px; }
         .form-control:focus { border-color: var(--amarelo-principal); box-shadow: none; }
-        .btn-vinho { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
-        .btn-vinho:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
+        .btn-mk { background-color: var(--amarelo-principal); color: var(--amarelo-claro); border: none; border-radius: 20px; padding: 10px 30px; }
+        .btn-mk:hover { background-color: var(--marrom-avermelhado); color: var(--amarelo-claro); }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-3">
-    <a class="navbar-brand fw-bold fs-4" style="color: var(--amarelo-claro);"><img src="/admin.png" style="width: 150px; height: 40px;" alt="Maktaba"></a>
-    <a href="/livros/catalogo" class="btn btn-sm" style="background-color: var(--amarelo-claro); color: var(--amarelo-principal); border-radius: 20px;">← Voltar ao Catálogo</a>
+<nav class="navbar navbar-mk px-4 py-3 d-flex justify-content-between align-items-center">
+    <a href="/admin/dashboard" class="navbar-brand"><img src="/admin.png" style="width: 150px; height: 40px;" alt="Maktaba Admin"></a>
+    <div class="d-flex gap-2">
+        <a href="/admin/dashboard" class="btn btn-outline-mk btn-sm">Dashboard</a>
+        <a href="/livros/catalogo" class="btn btn-outline-mk btn-sm">Catálogo</a>
+        <form action="/logout" method="post" class="d-inline">
+            <button class="btn btn-danger-mk btn-sm">Sair</button>
+        </form>
+    </div>
 </nav>
 
 <div class="container py-4" style="max-width: 600px;">
-    <div class="card card-custom shadow">
-        <div class="card-header card-header-custom fw-bold">
+    <div class="card card-mk shadow">
+        <div class="card-header card-header-mk fw-bold">
              Adicionar Novo Livro
         </div>
         <div class="card-body p-4">
@@ -67,7 +73,7 @@
                     <small class="text-muted">Tamanho máximo: 50MB</small>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-vinho">Salvar Livro</button>
+                    <button type="submit" class="btn btn-mk">Salvar Livro</button>
                 </div>
             </form>
         </div>
