@@ -1,4 +1,4 @@
-#  Maktaba API (Projeto em  Andamento)
+#  Maktaba API 
 
 > Plataforma de assinatura para recebimento de livros mensais.
 
